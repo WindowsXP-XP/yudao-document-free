@@ -100,7 +100,18 @@
         return observer;
     }
 
-    // 后续模块将在此处添加
+    // ========== 模块3: 初始清理 ==========
+    function removeExistingPopups() {
+        const selector = POPUP_SELECTORS.join(', ');
+        const popups = document.querySelectorAll(selector);
+
+        popups.forEach(popup => {
+            popup.remove();
+            console.log(`${LOG_PREFIX} 初始清理:`, popup.className);
+        });
+
+        console.log(`${LOG_PREFIX} 初始清理完成，移除${popups.length}个弹窗`);
+    }
 
     console.log(`${LOG_PREFIX} 芋道文档VIP弹窗移除器启动`);
 

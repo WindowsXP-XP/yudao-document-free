@@ -3,3 +3,6 @@
 
 # 调试临时文件
 .tmp-*
+node_modules/
+package.json
+package-lock.json

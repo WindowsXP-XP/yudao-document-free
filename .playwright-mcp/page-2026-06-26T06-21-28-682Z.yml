@@ -1,0 +1,1235 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic "目录" [ref=e5] [cursor=pointer]:
+        - img [ref=e6]
+      - link "ruoyi-vue-pro 开发指南" [ref=e8] [cursor=pointer]:
+        - /url: /
+        - img "ruoyi-vue-pro 开发指南" [ref=e9]
+      - generic [ref=e10]:
+        - textbox "Search" [ref=e12] [cursor=pointer]:
+          - /placeholder: ""
+        - navigation [ref=e13]:
+          - button "开发指南" [ref=e16] [cursor=pointer]:
+            - link "开发指南" [ref=e17]:
+              - /url: /intro/
+          - button "项目实战" [ref=e21] [cursor=pointer]:
+            - link "项目实战" [ref=e22]:
+              - /url: /bpm/
+          - link "视频教程" [ref=e25] [cursor=pointer]:
+            - /url: /video/
+          - button "在线体验" [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: 在线体验
+          - link "微服务版 (opens new window)" [ref=e32] [cursor=pointer]:
+            - /url: https://github.com/YunaiV/yudao-cloud
+            - text: 微服务版
+            - generic [ref=e33]:
+              - img [ref=e34]
+              - generic [ref=e37]: (opens new window)
+          - link "作者博客 (opens new window)" [ref=e39] [cursor=pointer]:
+            - /url: https://www.iocoder.cn/
+            - text: 作者博客
+            - generic [ref=e40]:
+              - img [ref=e41]
+              - generic [ref=e44]: (opens new window)
+          - link "GitHub (opens new window)" [ref=e45] [cursor=pointer]:
+            - /url: https://github.com/YunaiV/ruoyi-vue-pro
+            - text: GitHub
+            - generic [ref=e46]:
+              - img [ref=e47]
+              - generic [ref=e50]: (opens new window)
+    - complementary [ref=e51]:
+      - list [ref=e52]:
+        - listitem [ref=e53]:
+          - generic [ref=e54]:
+            - paragraph [ref=e55]: 萌新必读
+            - list [ref=e56]:
+              - listitem [ref=e57]:
+                - link "简介" [ref=e58] [cursor=pointer]:
+                  - /url: /intro/
+              - listitem [ref=e59]:
+                - link "交流群" [ref=e60] [cursor=pointer]:
+                  - /url: /qun/
+              - listitem [ref=e61]:
+                - link "视频教程" [ref=e62] [cursor=pointer]:
+                  - /url: /video/
+              - listitem [ref=e63]:
+                - link "功能列表" [ref=e64] [cursor=pointer]:
+                  - /url: /feature/
+              - listitem [ref=e65]:
+                - link "快速启动（后端项目）" [ref=e66] [cursor=pointer]:
+                  - /url: /quick-start/
+              - listitem [ref=e67]:
+                - link "快速启动（前端项目）" [ref=e68] [cursor=pointer]:
+                  - /url: /quick-start-front/
+              - listitem [ref=e69]:
+                - link "接口文档" [ref=e70] [cursor=pointer]:
+                  - /url: /api-doc/
+              - listitem [ref=e71]:
+                - link "技术选型" [ref=e72] [cursor=pointer]:
+                  - /url: /technology/
+              - listitem [ref=e73]:
+                - link "项目结构" [ref=e74] [cursor=pointer]:
+                  - /url: /project-intro/
+              - listitem [ref=e75]:
+                - link "代码热加载" [ref=e76] [cursor=pointer]:
+                  - /url: /dev-hot-swap/
+              - listitem [ref=e77]:
+                - link "一键改包" [ref=e78] [cursor=pointer]:
+                  - /url: /project-rename/
+              - listitem [ref=e79]:
+                - link "迁移模块（适合新项目）" [ref=e80] [cursor=pointer]:
+                  - /url: /migrate-module/
+              - listitem [ref=e81]:
+                - link "删除功能（以租户为例）" [ref=e82] [cursor=pointer]:
+                  - /url: /delete-code/
+              - listitem [ref=e83]:
+                - link "表结构变更（版本升级）" [ref=e84] [cursor=pointer]:
+                  - /url: /sql-update/
+              - listitem [ref=e85]:
+                - link "国产信创数据库（DM 达梦、大金、OpenGauss、瀚高）" [ref=e86] [cursor=pointer]:
+                  - /url: /xinchuang-db/
+              - listitem [ref=e87]:
+                - link "如何去除 Redis 缓存" [ref=e88] [cursor=pointer]:
+                  - /url: /remove-redis/
+              - listitem [ref=e89]:
+                - link "内网穿透" [ref=e90] [cursor=pointer]:
+                  - /url: /natapp/
+              - listitem [ref=e91]:
+                - link "面试题、简历模版、简历优化" [ref=e92] [cursor=pointer]:
+                  - /url: /interview/
+              - listitem [ref=e93]:
+                - link "项目外包" [ref=e94] [cursor=pointer]:
+                  - /url: /waibao/
+        - listitem [ref=e95]:
+          - generic [ref=e96]:
+            - paragraph [ref=e97]: 后端手册
+            - list [ref=e98]:
+              - listitem [ref=e99]:
+                - link "新建模块" [ref=e100] [cursor=pointer]:
+                  - /url: /module-new/
+              - listitem [ref=e101]:
+                - link "代码生成【单表】（新增功能）" [ref=e102] [cursor=pointer]:
+                  - /url: /new-feature/
+              - listitem [ref=e103]:
+                - link "代码生成【主子表】" [ref=e104] [cursor=pointer]:
+                  - /url: /new-feature/master-sub/
+              - listitem [ref=e105]:
+                - link "代码生成（树表）" [ref=e106] [cursor=pointer]:
+                  - /url: /new-feature/tree/
+              - listitem [ref=e107]:
+                - link "代码生成（移动端）" [ref=e108] [cursor=pointer]:
+                  - /url: /new-feature/admin-uniapp/
+              - listitem [ref=e109]:
+                - link "功能权限" [ref=e110] [cursor=pointer]:
+                  - /url: /resource-permission/
+              - listitem [ref=e111]:
+                - link "数据权限" [ref=e112] [cursor=pointer]:
+                  - /url: /data-permission/
+              - listitem [ref=e113]:
+                - link "用户体系" [ref=e114] [cursor=pointer]:
+                  - /url: /user-center/
+              - listitem [ref=e115]:
+                - link "三方登录" [ref=e116] [cursor=pointer]:
+                  - /url: /social-user/
+              - listitem [ref=e117]:
+                - link "OAuth 2.0（SSO 单点登录)" [ref=e118] [cursor=pointer]:
+                  - /url: /oauth2/
+              - listitem [ref=e119]:
+                - link "SaaS 多租户【字段隔离】" [ref=e120] [cursor=pointer]:
+                  - /url: /saas-tenant/
+              - listitem [ref=e121]:
+                - link "SaaS 多租户【数据库隔离】" [ref=e122] [cursor=pointer]:
+                  - /url: /saas-tenant/dynamic/
+              - listitem [ref=e123]:
+                - link "WebSocket 实时通信" [ref=e124] [cursor=pointer]:
+                  - /url: /websocket/
+              - listitem [ref=e125]:
+                - link "异常处理（错误码）" [ref=e126] [cursor=pointer]:
+                  - /url: /exception/
+              - listitem [ref=e127]:
+                - link "参数校验、时间传参" [ref=e128] [cursor=pointer]:
+                  - /url: /validator/
+              - listitem [ref=e129]:
+                - link "分页实现" [ref=e130] [cursor=pointer]:
+                  - /url: /page-feature/
+              - listitem [ref=e131]:
+                - link "VO 对象转换、数据翻译" [ref=e132] [cursor=pointer]:
+                  - /url: /vo/
+                - list [ref=e133]:
+                  - listitem [ref=e134]:
+                    - link "1. 对象转换" [ref=e135] [cursor=pointer]:
+                      - /url: /vo/#_1-对象转换
+                    - list [ref=e136]:
+                      - listitem [ref=e137]:
+                        - link "1.1 MapStruct" [ref=e138] [cursor=pointer]:
+                          - /url: /vo/#_1-1-mapstruct
+                      - listitem [ref=e139]:
+                        - link "1.2 BeanUtils" [ref=e140] [cursor=pointer]:
+                          - /url: /vo/#_1-2-beanutils
+                  - listitem [ref=e141]:
+                    - link "2. 数据翻译" [ref=e142] [cursor=pointer]:
+                      - /url: /vo/#_2-数据翻译
+                    - list [ref=e143]:
+                      - listitem [ref=e144]:
+                        - link "2.1 场景一：模块内翻译" [ref=e145] [cursor=pointer]:
+                          - /url: /vo/#_2-1-场景一-模块内翻译
+                      - listitem [ref=e146]:
+                        - link "2.2 场景二：跨模块翻译" [ref=e147] [cursor=pointer]:
+                          - /url: /vo/#_2-2-场景二-跨模块翻译
+                      - listitem [ref=e148]:
+                        - link "2.3 场景三：Excel 导出翻译" [ref=e149] [cursor=pointer]:
+                          - /url: /vo/#_2-3-场景三-excel-导出翻译
+              - listitem [ref=e150]:
+                - link "文件存储（上传下载）" [ref=e151] [cursor=pointer]:
+                  - /url: /file/
+              - listitem [ref=e152]:
+                - link "Excel 导入导出" [ref=e153] [cursor=pointer]:
+                  - /url: /excel-import-and-export/
+              - listitem [ref=e154]:
+                - link "操作日志、访问日志、异常日志" [ref=e155] [cursor=pointer]:
+                  - /url: /system-log/
+              - listitem [ref=e156]:
+                - link "MyBatis 数据库" [ref=e157] [cursor=pointer]:
+                  - /url: /mybatis/
+              - listitem [ref=e158]:
+                - link "MyBatis 联表&分页查询" [ref=e159] [cursor=pointer]:
+                  - /url: /mybatis-pro/
+              - listitem [ref=e160]:
+                - link "多数据源（读写分离）、事务" [ref=e161] [cursor=pointer]:
+                  - /url: /dynamic-datasource/
+              - listitem [ref=e162]:
+                - link "Redis 缓存" [ref=e163] [cursor=pointer]:
+                  - /url: /redis-cache/
+              - listitem [ref=e164]:
+                - link "本地缓存" [ref=e165] [cursor=pointer]:
+                  - /url: /local-cache/
+              - listitem [ref=e166]:
+                - link "异步任务" [ref=e167] [cursor=pointer]:
+                  - /url: /async-task/
+              - listitem [ref=e168]:
+                - link "分布式锁" [ref=e169] [cursor=pointer]:
+                  - /url: /distributed-lock/
+              - listitem [ref=e170]:
+                - link "幂等性（防重复提交）" [ref=e171] [cursor=pointer]:
+                  - /url: /idempotent/
+              - listitem [ref=e172]:
+                - link "请求限流（RateLimiter）" [ref=e173] [cursor=pointer]:
+                  - /url: /rate-limiter/
+              - listitem [ref=e174]:
+                - link "HTTP 接口签名（防篡改）" [ref=e175] [cursor=pointer]:
+                  - /url: /http-sign/
+              - listitem [ref=e176]:
+                - link "HTTP 接口加解密" [ref=e177] [cursor=pointer]:
+                  - /url: /api-encrypt/
+              - listitem [ref=e178]:
+                - link "单元测试" [ref=e179] [cursor=pointer]:
+                  - /url: /unit-test/
+              - listitem [ref=e180]:
+                - link "验证码" [ref=e181] [cursor=pointer]:
+                  - /url: /captcha/
+              - listitem [ref=e182]:
+                - link "工具类 Util" [ref=e183] [cursor=pointer]:
+                  - /url: /util/
+              - listitem [ref=e184]:
+                - link "配置管理" [ref=e185] [cursor=pointer]:
+                  - /url: /config-center/
+              - listitem [ref=e186]:
+                - link "数据库文档" [ref=e187] [cursor=pointer]:
+                  - /url: /db-doc/
+        - listitem [ref=e188]:
+          - generic [ref=e189]:
+            - paragraph [ref=e190]: 中间件手册
+            - list [ref=e191]:
+              - listitem [ref=e192]:
+                - link "定时任务" [ref=e193] [cursor=pointer]:
+                  - /url: /job/
+              - listitem [ref=e194]:
+                - link "消息队列（内存）" [ref=e195] [cursor=pointer]:
+                  - /url: /message-queue/event/
+              - listitem [ref=e196]:
+                - link "消息队列（Redis）" [ref=e197] [cursor=pointer]:
+                  - /url: /message-queue/redis/
+              - listitem [ref=e198]:
+                - link "消息队列（RocketMQ）" [ref=e199] [cursor=pointer]:
+                  - /url: /message-queue/rocketmq/
+              - listitem [ref=e200]:
+                - link "消息队列（RabbitMQ）" [ref=e201] [cursor=pointer]:
+                  - /url: /message-queue/rabbitmq/
+              - listitem [ref=e202]:
+                - link "消息队列（Kafka）" [ref=e203] [cursor=pointer]:
+                  - /url: /message-queue/kafka/
+              - listitem [ref=e204]:
+                - link "限流熔断" [ref=e205] [cursor=pointer]:
+                  - /url: /server-protection/
+        - listitem [ref=e206]:
+          - generic [ref=e207]:
+            - paragraph [ref=e208]: 工作流手册
+            - list [ref=e209]:
+              - listitem [ref=e210]:
+                - link "工作流演示" [ref=e211] [cursor=pointer]:
+                  - /url: /bpm-preview/
+              - listitem [ref=e212]:
+                - link "功能开启" [ref=e213] [cursor=pointer]:
+                  - /url: /bpm/
+              - listitem [ref=e214]:
+                - link "工作流（达梦适配）" [ref=e215] [cursor=pointer]:
+                  - /url: /bpm/dameng/
+              - listitem [ref=e216]:
+                - link "审批接入（流程表单）" [ref=e217] [cursor=pointer]:
+                  - /url: /bpm/use-bpm-form/
+              - listitem [ref=e218]:
+                - link "审批接入（业务表单）" [ref=e219] [cursor=pointer]:
+                  - /url: /bpm/use-business-form/
+              - listitem [ref=e220]:
+                - link "流程设计器（BPMN）" [ref=e221] [cursor=pointer]:
+                  - /url: /bpm/model-designer-bpmn/
+              - listitem [ref=e222]:
+                - link "流程设计器（钉钉、飞书）" [ref=e223] [cursor=pointer]:
+                  - /url: /bpm/model-designer-dingding/
+              - listitem [ref=e224]:
+                - link "选择审批人、发起人自选" [ref=e225] [cursor=pointer]:
+                  - /url: /bpm/assignee/
+              - listitem [ref=e226]:
+                - link "会签、或签、依次审批" [ref=e227] [cursor=pointer]:
+                  - /url: /bpm/multi-instance/
+              - listitem [ref=e228]:
+                - link "流程发起、取消、重新发起" [ref=e229] [cursor=pointer]:
+                  - /url: /bpm/process-instance/
+              - listitem [ref=e230]:
+                - link "审批通过、不通过、驳回" [ref=e231] [cursor=pointer]:
+                  - /url: /bpm/task-todo-done/
+              - listitem [ref=e232]:
+                - link "审批加签、减签" [ref=e233] [cursor=pointer]:
+                  - /url: /bpm/sign/
+              - listitem [ref=e234]:
+                - link "审批转办、委派、抄送" [ref=e235] [cursor=pointer]:
+                  - /url: /bpm/task-delegation-and-cc/
+              - listitem [ref=e236]:
+                - link "执行监听器、任务监听器" [ref=e237] [cursor=pointer]:
+                  - /url: /bpm/listener/
+              - listitem [ref=e238]:
+                - link "流程表达式" [ref=e239] [cursor=pointer]:
+                  - /url: /bpm/expression/
+              - listitem [ref=e240]:
+                - link "流程审批通知" [ref=e241] [cursor=pointer]:
+                  - /url: /bpm/message/
+              - listitem [ref=e242]:
+                - link "移动端审批" [ref=e243] [cursor=pointer]:
+                  - /url: /bpm/mobile/
+        - listitem [ref=e244]:
+          - generic [ref=e245]:
+            - paragraph [ref=e246]: 大屏手册
+            - list [ref=e247]:
+              - listitem [ref=e248]:
+                - link "报表设计器" [ref=e249] [cursor=pointer]:
+                  - /url: /report/
+              - listitem [ref=e250]:
+                - link "大屏设计器" [ref=e251] [cursor=pointer]:
+                  - /url: /report/screen/
+        - listitem [ref=e252]:
+          - generic [ref=e253]:
+            - paragraph [ref=e254]: 支付手册
+            - list [ref=e255]:
+              - listitem [ref=e256]:
+                - link "功能开启" [ref=e257] [cursor=pointer]:
+                  - /url: /pay/build/
+              - listitem [ref=e258]:
+                - link "支付宝支付接入" [ref=e259] [cursor=pointer]:
+                  - /url: /pay/alipay-pay-demo/
+              - listitem [ref=e260]:
+                - link "微信公众号支付接入" [ref=e261] [cursor=pointer]:
+                  - /url: /pay/wx-pub-pay-demo/
+              - listitem [ref=e262]:
+                - link "微信小程序支付接入" [ref=e263] [cursor=pointer]:
+                  - /url: /pay/wx-lite-pay-demo/
+              - listitem [ref=e264]:
+                - link "支付宝、微信退款接入" [ref=e265] [cursor=pointer]:
+                  - /url: /pay/refund-demo/
+              - listitem [ref=e266]:
+                - link "支付宝转账接入" [ref=e267] [cursor=pointer]:
+                  - /url: /pay/alipay-transfer-demo/
+              - listitem [ref=e268]:
+                - link "微信转账接入" [ref=e269] [cursor=pointer]:
+                  - /url: /pay/wx-transfer-demo/
+              - listitem [ref=e270]:
+                - link "钱包充值、支付、退款" [ref=e271] [cursor=pointer]:
+                  - /url: /pay/wallet/
+              - listitem [ref=e272]:
+                - link "模拟支付、退款" [ref=e273] [cursor=pointer]:
+                  - /url: /pay/mock/
+        - listitem [ref=e274]:
+          - generic [ref=e275]:
+            - paragraph [ref=e276]: 会员手册
+            - list [ref=e277]:
+              - listitem [ref=e278]:
+                - link "功能开启" [ref=e279] [cursor=pointer]:
+                  - /url: /member/build/
+              - listitem [ref=e280]:
+                - link "微信公众号登录" [ref=e281] [cursor=pointer]:
+                  - /url: /member/weixin-mp-login/
+              - listitem [ref=e282]:
+                - link "微信小程序登录" [ref=e283] [cursor=pointer]:
+                  - /url: /member/weixin-lite-login/
+              - listitem [ref=e284]:
+                - link "微信小程序订阅消息" [ref=e285] [cursor=pointer]:
+                  - /url: /member/weixin-lite-subscribe-message/
+              - listitem [ref=e286]:
+                - link "微信小程序码" [ref=e287] [cursor=pointer]:
+                  - /url: /member/weixin-lite-qrcode/
+              - listitem [ref=e288]:
+                - link "会员用户、标签、分组" [ref=e289] [cursor=pointer]:
+                  - /url: /member/user/
+              - listitem [ref=e290]:
+                - link "会员等级、积分、签到" [ref=e291] [cursor=pointer]:
+                  - /url: /member/level/
+        - listitem [ref=e292]:
+          - generic [ref=e293]:
+            - paragraph [ref=e294]: 商城手册
+            - list [ref=e295]:
+              - listitem [ref=e296]:
+                - link "商城演示" [ref=e297] [cursor=pointer]:
+                  - /url: /mall-preview/
+              - listitem [ref=e298]:
+                - link "功能开启" [ref=e299] [cursor=pointer]:
+                  - /url: /mall/build/
+              - listitem [ref=e300]:
+                - link "商城装修" [ref=e301] [cursor=pointer]:
+                  - /url: /mall/diy/
+              - listitem [ref=e302]:
+                - link "在线客服" [ref=e303] [cursor=pointer]:
+                  - /url: /mall/kefu/
+              - listitem [ref=e304]:
+                - link "【商品】商品分类" [ref=e305] [cursor=pointer]:
+                  - /url: /mall/product-category/
+              - listitem [ref=e306]:
+                - link "【商品】商品属性" [ref=e307] [cursor=pointer]:
+                  - /url: /mall/product-property/
+              - listitem [ref=e308]:
+                - link "【商品】商品 SPU 与 SKU" [ref=e309] [cursor=pointer]:
+                  - /url: /mall/product-spu-sku/
+              - listitem [ref=e310]:
+                - link "【商品】商品评价" [ref=e311] [cursor=pointer]:
+                  - /url: /mall/product-comment/
+              - listitem [ref=e312]:
+                - link "【交易】购物车" [ref=e313] [cursor=pointer]:
+                  - /url: /mall/trade-cart/
+              - listitem [ref=e314]:
+                - link "【交易】交易订单" [ref=e315] [cursor=pointer]:
+                  - /url: /mall/trade-order/
+              - listitem [ref=e316]:
+                - link "【交易】售后退款" [ref=e317] [cursor=pointer]:
+                  - /url: /mall/trade-aftersale/
+              - listitem [ref=e318]:
+                - link "【交易】快递发货" [ref=e319] [cursor=pointer]:
+                  - /url: /mall/trade-delivery-express/
+              - listitem [ref=e320]:
+                - link "【交易】门店自提" [ref=e321] [cursor=pointer]:
+                  - /url: /mall/trade-delivery-pickup/
+              - listitem [ref=e322]:
+                - link "【交易】分销返佣" [ref=e323] [cursor=pointer]:
+                  - /url: /mall/trade-brokerage/
+              - listitem [ref=e324]:
+                - link "【营销】优惠劵" [ref=e325] [cursor=pointer]:
+                  - /url: /mall/promotion-coupon/
+              - listitem [ref=e326]:
+                - link "【营销】积分商城" [ref=e327] [cursor=pointer]:
+                  - /url: /mall/point-activity/
+              - listitem [ref=e328]:
+                - link "【营销】拼团活动" [ref=e329] [cursor=pointer]:
+                  - /url: /mall/promotion-combination/
+              - listitem [ref=e330]:
+                - link "【营销】秒杀活动" [ref=e331] [cursor=pointer]:
+                  - /url: /mall/promotion-seckill/
+              - listitem [ref=e332]:
+                - link "【营销】砍价活动" [ref=e333] [cursor=pointer]:
+                  - /url: /mall/promotion-bargain/
+              - listitem [ref=e334]:
+                - link "【营销】满减送活动" [ref=e335] [cursor=pointer]:
+                  - /url: /mall/promotion-record/
+              - listitem [ref=e336]:
+                - link "【营销】限时折扣" [ref=e337] [cursor=pointer]:
+                  - /url: /mall/promotion-discount/
+              - listitem [ref=e338]:
+                - link "【营销】内容管理" [ref=e339] [cursor=pointer]:
+                  - /url: /mall/promotion-content/
+              - listitem [ref=e340]:
+                - link "【统计】会员、商品、交易统计" [ref=e341] [cursor=pointer]:
+                  - /url: /mall/statistics/
+        - listitem [ref=e342]:
+          - generic [ref=e343]:
+            - paragraph [ref=e344]: ERP手册
+            - list [ref=e345]:
+              - listitem [ref=e346]:
+                - link "ERP 演示" [ref=e347] [cursor=pointer]:
+                  - /url: /erp-preview/
+              - listitem [ref=e348]:
+                - link "功能开启" [ref=e349] [cursor=pointer]:
+                  - /url: /erp/build/
+              - listitem [ref=e350]:
+                - link "【产品】产品信息、分类、单位" [ref=e351] [cursor=pointer]:
+                  - /url: /erp/product/
+              - listitem [ref=e352]:
+                - link "【库存】产品库存、库存明细" [ref=e353] [cursor=pointer]:
+                  - /url: /erp/stock/
+              - listitem [ref=e354]:
+                - link "【库存】其它入库、其它出库" [ref=e355] [cursor=pointer]:
+                  - /url: /erp/stock-in-out/
+              - listitem [ref=e356]:
+                - link "【库存】库存调拨、库存盘点" [ref=e357] [cursor=pointer]:
+                  - /url: /erp/stock-move-check/
+              - listitem [ref=e358]:
+                - link "【采购】采购订单、入库、退货" [ref=e359] [cursor=pointer]:
+                  - /url: /erp/purchase/
+              - listitem [ref=e360]:
+                - link "【销售】销售订单、出库、退货" [ref=e361] [cursor=pointer]:
+                  - /url: /erp/sale/
+              - listitem [ref=e362]:
+                - link "【财务】采购付款、销售收款" [ref=e363] [cursor=pointer]:
+                  - /url: /sale/finance-payment-receipt/
+        - listitem [ref=e364]:
+          - generic [ref=e365]:
+            - paragraph [ref=e366]: CRM手册
+            - list [ref=e367]:
+              - listitem [ref=e368]:
+                - link "CRM 演示" [ref=e369] [cursor=pointer]:
+                  - /url: /crm-preview/
+              - listitem [ref=e370]:
+                - link "功能开启" [ref=e371] [cursor=pointer]:
+                  - /url: /crm/build/
+              - listitem [ref=e372]:
+                - link "【线索】线索管理" [ref=e373] [cursor=pointer]:
+                  - /url: /crm/clue/
+              - listitem [ref=e374]:
+                - link "【客户】客户管理、公海客户" [ref=e375] [cursor=pointer]:
+                  - /url: /crm/customer/
+              - listitem [ref=e376]:
+                - link "【商机】商机管理、商机状态" [ref=e377] [cursor=pointer]:
+                  - /url: /crm/business/
+              - listitem [ref=e378]:
+                - link "【合同】合同管理、合同提醒" [ref=e379] [cursor=pointer]:
+                  - /url: /crm/contract/
+              - listitem [ref=e380]:
+                - link "【回款】回款管理、回款计划" [ref=e381] [cursor=pointer]:
+                  - /url: /crm/receivable/
+              - listitem [ref=e382]:
+                - link "【产品】产品管理、产品分类" [ref=e383] [cursor=pointer]:
+                  - /url: /crm/product/
+              - listitem [ref=e384]:
+                - link "【通用】数据权限" [ref=e385] [cursor=pointer]:
+                  - /url: /crm/permission/
+              - listitem [ref=e386]:
+                - link "【通用】跟进记录、待办事项" [ref=e387] [cursor=pointer]:
+                  - /url: /crm/follow-up/
+        - listitem [ref=e388]:
+          - generic [ref=e389]:
+            - paragraph [ref=e390]: AI大模型手册
+            - list [ref=e391]:
+              - listitem [ref=e392]:
+                - link "AI 大模型演示" [ref=e393] [cursor=pointer]:
+                  - /url: /ai-preview/
+              - listitem [ref=e394]:
+                - link "功能开启" [ref=e395] [cursor=pointer]:
+                  - /url: /ai/build/
+              - listitem [ref=e396]:
+                - link "AI 聊天对话" [ref=e397] [cursor=pointer]:
+                  - /url: /ai/chat/
+              - listitem [ref=e398]:
+                - link "AI 绘画创作" [ref=e399] [cursor=pointer]:
+                  - /url: /ai/image/
+              - listitem [ref=e400]:
+                - link "AI 知识库（RAG）" [ref=e401] [cursor=pointer]:
+                  - /url: /ai/knowledge/
+              - listitem [ref=e402]:
+                - link "AI 音乐创作" [ref=e403] [cursor=pointer]:
+                  - /url: /ai/music/
+              - listitem [ref=e404]:
+                - link "AI 写作助手" [ref=e405] [cursor=pointer]:
+                  - /url: /ai/write/
+              - listitem [ref=e406]:
+                - link "AI 思维导图" [ref=e407] [cursor=pointer]:
+                  - /url: /ai/mindmap/
+              - listitem [ref=e408]:
+                - link "AI 工具（function calling）" [ref=e409] [cursor=pointer]:
+                  - /url: /ai/tool/
+              - listitem [ref=e410]:
+                - link "AI 工作流" [ref=e411] [cursor=pointer]:
+                  - /url: /ai/workflow/
+              - listitem [ref=e412]:
+                - link "Dify 工作流" [ref=e413] [cursor=pointer]:
+                  - /url: /ai/dify/
+              - listitem [ref=e414]:
+                - link "FastGPT 工作流" [ref=e415] [cursor=pointer]:
+                  - /url: /ai/fastgpt/
+              - listitem [ref=e416]:
+                - link "Coze 智能体" [ref=e417] [cursor=pointer]:
+                  - /url: /ai/coze/
+              - listitem [ref=e418]:
+                - link "推理模式（thinking）" [ref=e419] [cursor=pointer]:
+                  - /url: /ai/thinking/
+              - listitem [ref=e420]:
+                - link "联网搜索" [ref=e421] [cursor=pointer]:
+                  - /url: /ai/web-search/
+              - listitem [ref=e422]:
+                - link "MCP Client 客户端" [ref=e423] [cursor=pointer]:
+                  - /url: /ai/mcp-client/
+              - listitem [ref=e424]:
+                - link "MCP Server 服务端" [ref=e425] [cursor=pointer]:
+                  - /url: /ai/mcp-server/
+              - listitem [ref=e426]:
+                - link "【模型接入】Claude" [ref=e427] [cursor=pointer]:
+                  - /url: /ai/claude/
+              - listitem [ref=e428]:
+                - link "【模型接入】OpenAI" [ref=e429] [cursor=pointer]:
+                  - /url: /ai/openai/
+              - listitem [ref=e430]:
+                - link "【模型接入】通义千问" [ref=e431] [cursor=pointer]:
+                  - /url: /ai/tongyi/
+              - listitem [ref=e432]:
+                - link "【模型接入】DeepSeek" [ref=e433] [cursor=pointer]:
+                  - /url: /ai/deep-seek/
+              - listitem [ref=e434]:
+                - link "【模型接入】字节豆包" [ref=e435] [cursor=pointer]:
+                  - /url: /ai/doubao/
+              - listitem [ref=e436]:
+                - link "【模型接入】腾讯混元" [ref=e437] [cursor=pointer]:
+                  - /url: /ai/hunyuan/
+              - listitem [ref=e438]:
+                - link "【模型接入】硅基流动" [ref=e439] [cursor=pointer]:
+                  - /url: /ai/siliconflow/
+              - listitem [ref=e440]:
+                - link "【模型接入】MiniMax" [ref=e441] [cursor=pointer]:
+                  - /url: /ai/minimax/
+              - listitem [ref=e442]:
+                - link "【模型接入】月之月面" [ref=e443] [cursor=pointer]:
+                  - /url: /ai/moonshot/
+              - listitem [ref=e444]:
+                - link "【模型接入】百川智能" [ref=e445] [cursor=pointer]:
+                  - /url: /ai/baichuan/
+              - listitem [ref=e446]:
+                - link "【模型接入】文心一言" [ref=e447] [cursor=pointer]:
+                  - /url: /ai/yiyan/
+              - listitem [ref=e448]:
+                - link "【模型接入】LLAMA" [ref=e449] [cursor=pointer]:
+                  - /url: /ai/llama/
+              - listitem [ref=e450]:
+                - link "【模型接入】智谱 GLM" [ref=e451] [cursor=pointer]:
+                  - /url: /ai/glm/
+              - listitem [ref=e452]:
+                - link "【模型接入】讯飞星火" [ref=e453] [cursor=pointer]:
+                  - /url: /ai/xinghuo/
+              - listitem [ref=e454]:
+                - link "【模型接入】微软 OpenAI" [ref=e455] [cursor=pointer]:
+                  - /url: /ai/azure-openai/
+              - listitem [ref=e456]:
+                - link "【模型接入】谷歌 Gemini" [ref=e457] [cursor=pointer]:
+                  - /url: /ai/gemini/
+              - listitem [ref=e458]:
+                - link "【模型接入】Stable Diffusion" [ref=e459] [cursor=pointer]:
+                  - /url: /ai/stable-diffusion/
+              - listitem [ref=e460]:
+                - link "【模型接入】Midjourney" [ref=e461] [cursor=pointer]:
+                  - /url: /ai/midjourney/
+              - listitem [ref=e462]:
+                - link "【模型接入】Suno" [ref=e463] [cursor=pointer]:
+                  - /url: /ai/suno/
+        - listitem [ref=e464]:
+          - generic [ref=e465]:
+            - paragraph [ref=e466]: IoT物联网手册
+            - list [ref=e467]:
+              - listitem [ref=e468]:
+                - link "功能开启" [ref=e469] [cursor=pointer]:
+                  - /url: /iot/build/
+              - listitem [ref=e470]:
+                - link "产品管理" [ref=e471] [cursor=pointer]:
+                  - /url: /iot/product/
+              - listitem [ref=e472]:
+                - link "设备管理" [ref=e473] [cursor=pointer]:
+                  - /url: /iot/device/
+              - listitem [ref=e474]:
+                - link "物模型配置" [ref=e475] [cursor=pointer]:
+                  - /url: /iot/thing-model/
+              - listitem [ref=e476]:
+                - link "设备网关与子设备" [ref=e477] [cursor=pointer]:
+                  - /url: /iot/gateway-sub-device/
+              - listitem [ref=e478]:
+                - link "设备动态注册" [ref=e479] [cursor=pointer]:
+                  - /url: /iot/device-register/
+              - listitem [ref=e480]:
+                - link "设备接入（概述）" [ref=e481] [cursor=pointer]:
+                  - /url: /iot/protocol-overview/
+              - listitem [ref=e482]:
+                - link "设备接入（HTTP 协议）" [ref=e483] [cursor=pointer]:
+                  - /url: /iot/protocol-http/
+              - listitem [ref=e484]:
+                - link "设备接入（MQTT 协议）" [ref=e485] [cursor=pointer]:
+                  - /url: /iot/protocol-mqtt/
+              - listitem [ref=e486]:
+                - link "设备接入（EMQX 协议）" [ref=e487] [cursor=pointer]:
+                  - /url: /iot/protocol-emqx/
+              - listitem [ref=e488]:
+                - link "设备接入（TCP 协议）" [ref=e489] [cursor=pointer]:
+                  - /url: /iot/protocol-tcp/
+              - listitem [ref=e490]:
+                - link "设备接入（UDP 协议）" [ref=e491] [cursor=pointer]:
+                  - /url: /iot/protocol-udp/
+              - listitem [ref=e492]:
+                - link "设备接入（WebSocket 协议）" [ref=e493] [cursor=pointer]:
+                  - /url: /iot/protocol-websocket/
+              - listitem [ref=e494]:
+                - link "设备接入（CoAP 协议）" [ref=e495] [cursor=pointer]:
+                  - /url: /iot/protocol-coap/
+              - listitem [ref=e496]:
+                - link "设备接入（Modbus Client 模式）" [ref=e497] [cursor=pointer]:
+                  - /url: /iot/protocol-modbus-client/
+              - listitem [ref=e498]:
+                - link "设备接入（Modbus Server 模式）" [ref=e499] [cursor=pointer]:
+                  - /url: /iot/protocol-modbus-server/
+              - listitem [ref=e500]:
+                - link "设备接入（自定义协议）" [ref=e501] [cursor=pointer]:
+                  - /url: /iot/protocol-custom/
+              - listitem [ref=e502]:
+                - link "场景联动" [ref=e503] [cursor=pointer]:
+                  - /url: /iot/scene-rule/
+              - listitem [ref=e504]:
+                - link "数据流转" [ref=e505] [cursor=pointer]:
+                  - /url: /iot/data-rule/
+              - listitem [ref=e506]:
+                - link "告警配置" [ref=e507] [cursor=pointer]:
+                  - /url: /iot/alert-config/
+              - listitem [ref=e508]:
+                - link "OTA 固件升级" [ref=e509] [cursor=pointer]:
+                  - /url: /iot/ota/
+        - listitem [ref=e510]:
+          - generic [ref=e511]:
+            - paragraph [ref=e512]: MES手册
+            - list [ref=e513]:
+              - listitem [ref=e514]:
+                - link "MES 演示" [ref=e515] [cursor=pointer]:
+                  - /url: /mes-preview/
+              - listitem [ref=e516]:
+                - link "功能开启" [ref=e517] [cursor=pointer]:
+                  - /url: /mes/build/
+              - listitem [ref=e518]:
+                - link "【基础】物料产品、分类、计量单位" [ref=e519] [cursor=pointer]:
+                  - /url: /mes/md/product/
+              - listitem [ref=e520]:
+                - link "【基础】客户管理、供应商管理" [ref=e521] [cursor=pointer]:
+                  - /url: /mes/md/client-vendor/
+              - listitem [ref=e522]:
+                - link "【基础】车间设置、工作站设置" [ref=e523] [cursor=pointer]:
+                  - /url: /mes/md/workshop/
+              - listitem [ref=e524]:
+                - link "【基础】编码规则" [ref=e525] [cursor=pointer]:
+                  - /url: /mes/md/autocode/
+              - listitem [ref=e526]:
+                - link "【生产】工序设置、工艺流程" [ref=e527] [cursor=pointer]:
+                  - /url: /mes/pro/process-route/
+              - listitem [ref=e528]:
+                - link "【生产】生产工单" [ref=e529] [cursor=pointer]:
+                  - /url: /mes/pro/work-order/
+              - listitem [ref=e530]:
+                - link "【生产】生产排产、工序流转卡" [ref=e531] [cursor=pointer]:
+                  - /url: /mes/pro/schedule-card/
+              - listitem [ref=e532]:
+                - link "【生产】生产报工" [ref=e533] [cursor=pointer]:
+                  - /url: /mes/pro/feedback/
+              - listitem [ref=e534]:
+                - link "【生产】安灯配置、安灯呼叫" [ref=e535] [cursor=pointer]:
+                  - /url: /mes/pro/andon/
+              - listitem [ref=e536]:
+                - link "【生产】工作记录" [ref=e537] [cursor=pointer]:
+                  - /url: /mes/pro/work-record/
+              - listitem [ref=e538]:
+                - link "【仓库】仓库与库区库位、条码赋码、SN码" [ref=e539] [cursor=pointer]:
+                  - /url: /mes/wm/warehouse-setup/
+              - listitem [ref=e540]:
+                - link "【仓库】批次管理、库存现有量、库存事务" [ref=e541] [cursor=pointer]:
+                  - /url: /mes/wm/stock/
+              - listitem [ref=e542]:
+                - link "【仓库】到货通知、采购入库、采购退货" [ref=e543] [cursor=pointer]:
+                  - /url: /mes/wm/purchase-in/
+              - listitem [ref=e544]:
+                - link "【仓库】生产领料、生产退料、物料消耗" [ref=e545] [cursor=pointer]:
+                  - /url: /mes/wm/issue-return/
+              - listitem [ref=e546]:
+                - link "【仓库】产品产出、产品入库" [ref=e547] [cursor=pointer]:
+                  - /url: /mes/wm/product-in/
+              - listitem [ref=e548]:
+                - link "【仓库】发货通知、销售出库、销售退货" [ref=e549] [cursor=pointer]:
+                  - /url: /mes/wm/sales-out/
+              - listitem [ref=e550]:
+                - link "【仓库】外协发料、外协入库" [ref=e551] [cursor=pointer]:
+                  - /url: /mes/wm/outsource/
+              - listitem [ref=e552]:
+                - link "【仓库】其他入库、其他出库" [ref=e553] [cursor=pointer]:
+                  - /url: /mes/wm/misc/
+              - listitem [ref=e554]:
+                - link "【仓库】调拨单、装箱管理" [ref=e555] [cursor=pointer]:
+                  - /url: /mes/wm/transfer/
+              - listitem [ref=e556]:
+                - link "【仓库】库存盘点" [ref=e557] [cursor=pointer]:
+                  - /url: /mes/wm/stocktaking/
+              - listitem [ref=e558]:
+                - link "【质量】检测项设置、常见缺陷" [ref=e559] [cursor=pointer]:
+                  - /url: /mes/qc/base/
+              - listitem [ref=e560]:
+                - link "【质量】质检方案" [ref=e561] [cursor=pointer]:
+                  - /url: /mes/qc/template/
+              - listitem [ref=e562]:
+                - link "【质量】来料检验（IQC）" [ref=e563] [cursor=pointer]:
+                  - /url: /mes/qc/iqc/
+              - listitem [ref=e564]:
+                - link "【质量】过程检验（IPQC）" [ref=e565] [cursor=pointer]:
+                  - /url: /mes/qc/ipqc/
+              - listitem [ref=e566]:
+                - link "【质量】出货检验（OQC）" [ref=e567] [cursor=pointer]:
+                  - /url: /mes/qc/oqc/
+              - listitem [ref=e568]:
+                - link "【质量】退货检验（RQC）" [ref=e569] [cursor=pointer]:
+                  - /url: /mes/qc/rqc/
+              - listitem [ref=e570]:
+                - link "【质量】待检任务、检验结果、缺陷记录" [ref=e571] [cursor=pointer]:
+                  - /url: /mes/qc/pending-inspect/
+              - listitem [ref=e572]:
+                - link "【设备】设备类型、设备台账" [ref=e573] [cursor=pointer]:
+                  - /url: /mes/dv/device/
+              - listitem [ref=e574]:
+                - link "【设备】点检保养项目、点检保养方案" [ref=e575] [cursor=pointer]:
+                  - /url: /mes/dv/check-plan/
+              - listitem [ref=e576]:
+                - link "【设备】点检记录、保养记录、维修单" [ref=e577] [cursor=pointer]:
+                  - /url: /mes/dv/check-record/
+              - listitem [ref=e578]:
+                - link "【工具】工具类型、工装夹具台账" [ref=e579] [cursor=pointer]:
+                  - /url: /mes/tm/tool/
+              - listitem [ref=e580]:
+                - link "【排班】班组设置、节假日设置" [ref=e581] [cursor=pointer]:
+                  - /url: /mes/cal/team/
+              - listitem [ref=e582]:
+                - link "【排班】排班计划、排班日历" [ref=e583] [cursor=pointer]:
+                  - /url: /mes/cal/calendar/
+        - listitem [ref=e584]:
+          - generic [ref=e585]:
+            - paragraph [ref=e586]: WMS手册
+            - list [ref=e587]:
+              - listitem [ref=e588]:
+                - link "WMS 演示" [ref=e589] [cursor=pointer]:
+                  - /url: /wms-preview/
+              - listitem [ref=e590]:
+                - link "功能开启" [ref=e591] [cursor=pointer]:
+                  - /url: /wms/build/
+              - listitem [ref=e592]:
+                - link "【基础】仓库" [ref=e593] [cursor=pointer]:
+                  - /url: /wms/md/warehouse/
+              - listitem [ref=e594]:
+                - link "【基础】商品、SKU、分类、品牌" [ref=e595] [cursor=pointer]:
+                  - /url: /wms/md/item/
+              - listitem [ref=e596]:
+                - link "【基础】往来企业（供应商、客户）" [ref=e597] [cursor=pointer]:
+                  - /url: /wms/md/merchant/
+              - listitem [ref=e598]:
+                - link "【库存】库存记录、流水、统计" [ref=e599] [cursor=pointer]:
+                  - /url: /wms/inventory/
+              - listitem [ref=e600]:
+                - link "【单据】入库" [ref=e601] [cursor=pointer]:
+                  - /url: /wms/order/receipt/
+              - listitem [ref=e602]:
+                - link "【单据】出库" [ref=e603] [cursor=pointer]:
+                  - /url: /wms/order/shipment/
+              - listitem [ref=e604]:
+                - link "【单据】移库" [ref=e605] [cursor=pointer]:
+                  - /url: /wms/order/movement/
+              - listitem [ref=e606]:
+                - link "【单据】盘库" [ref=e607] [cursor=pointer]:
+                  - /url: /wms/order/check/
+              - listitem [ref=e608]:
+                - link "【其它】WMS、MES、ERP 对比" [ref=e609] [cursor=pointer]:
+                  - /url: /wms/compare/
+        - listitem [ref=e610]:
+          - generic [ref=e611]:
+            - paragraph [ref=e612]: IM即时通讯手册
+            - list [ref=e613]:
+              - listitem [ref=e614]:
+                - link "IM 演示" [ref=e615] [cursor=pointer]:
+                  - /url: /im-preview/
+              - listitem [ref=e616]:
+                - link "功能开启" [ref=e617] [cursor=pointer]:
+                  - /url: /im/build/
+              - listitem [ref=e618]:
+                - link "【好友】好友关系、好友申请" [ref=e619] [cursor=pointer]:
+                  - /url: /im/friend/
+              - listitem [ref=e620]:
+                - link "【群聊】群组、群成员、入群申请" [ref=e621] [cursor=pointer]:
+                  - /url: /im/group/
+              - listitem [ref=e622]:
+                - link "【消息】私聊、群聊、频道消息" [ref=e623] [cursor=pointer]:
+                  - /url: /im/message/
+              - listitem [ref=e624]:
+                - link "【频道】频道、频道素材" [ref=e625] [cursor=pointer]:
+                  - /url: /im/channel/
+              - listitem [ref=e626]:
+                - link "【内容】表情、敏感词" [ref=e627] [cursor=pointer]:
+                  - /url: /im/face/
+              - listitem [ref=e628]:
+                - link "【通话】语音通话、视频通话、共享屏幕" [ref=e629] [cursor=pointer]:
+                  - /url: /im/rtc/
+              - listitem [ref=e630]:
+                - link "【WebSocket】实时推送与离线消息" [ref=e631] [cursor=pointer]:
+                  - /url: /im/websocket/
+        - listitem [ref=e632]:
+          - generic [ref=e633]:
+            - paragraph [ref=e634]: 公众号手册
+            - list [ref=e635]:
+              - listitem [ref=e636]:
+                - link "功能开启" [ref=e637] [cursor=pointer]:
+                  - /url: /mp/build/
+              - listitem [ref=e638]:
+                - link "公众号接入" [ref=e639] [cursor=pointer]:
+                  - /url: /mp/account/
+              - listitem [ref=e640]:
+                - link "公众号粉丝" [ref=e641] [cursor=pointer]:
+                  - /url: /mp/user/
+              - listitem [ref=e642]:
+                - link "公众号标签" [ref=e643] [cursor=pointer]:
+                  - /url: /mp/tag/
+              - listitem [ref=e644]:
+                - link "公众号消息" [ref=e645] [cursor=pointer]:
+                  - /url: /mp/message/
+              - listitem [ref=e646]:
+                - link "模版消息" [ref=e647] [cursor=pointer]:
+                  - /url: /mp/message-template/
+              - listitem [ref=e648]:
+                - link "自动回复" [ref=e649] [cursor=pointer]:
+                  - /url: /mp/auto-reply/
+              - listitem [ref=e650]:
+                - link "公众号菜单" [ref=e651] [cursor=pointer]:
+                  - /url: /mp/menu/
+              - listitem [ref=e652]:
+                - link "公众号素材" [ref=e653] [cursor=pointer]:
+                  - /url: /mp/material/
+              - listitem [ref=e654]:
+                - link "公众号图文" [ref=e655] [cursor=pointer]:
+                  - /url: /mp/article/
+              - listitem [ref=e656]:
+                - link "公众号统计" [ref=e657] [cursor=pointer]:
+                  - /url: /mp/statistics/
+        - listitem [ref=e658]:
+          - generic [ref=e659]:
+            - paragraph [ref=e660]: 系统手册
+            - list [ref=e661]:
+              - listitem [ref=e662]:
+                - link "短信配置" [ref=e663] [cursor=pointer]:
+                  - /url: /sms/
+              - listitem [ref=e664]:
+                - link "邮件配置" [ref=e665] [cursor=pointer]:
+                  - /url: /mail/
+              - listitem [ref=e666]:
+                - link "站内信配置" [ref=e667] [cursor=pointer]:
+                  - /url: /notify/
+              - listitem [ref=e668]:
+                - link "Webhook（钉钉、飞书、企微）" [ref=e669] [cursor=pointer]:
+                  - /url: /webhook/
+              - listitem [ref=e670]:
+                - link "数据脱敏、字段权限" [ref=e671] [cursor=pointer]:
+                  - /url: /desensitize/
+              - listitem [ref=e672]:
+                - link "敏感词" [ref=e673] [cursor=pointer]:
+                  - /url: /sensitive-word/
+              - listitem [ref=e674]:
+                - link "地区 & IP 库" [ref=e675] [cursor=pointer]:
+                  - /url: /area-and-ip/
+        - listitem [ref=e676]:
+          - generic [ref=e677]:
+            - paragraph [ref=e678]: 运维手册
+            - list [ref=e679]:
+              - listitem [ref=e680]:
+                - link "开发环境" [ref=e681] [cursor=pointer]:
+                  - /url: /dev-env/
+              - listitem [ref=e682]:
+                - link "Linux 部署" [ref=e683] [cursor=pointer]:
+                  - /url: /deployment-linux/
+              - listitem [ref=e684]:
+                - link "Docker 部署" [ref=e685] [cursor=pointer]:
+                  - /url: /deployment-docker/
+              - listitem [ref=e686]:
+                - link "Jenkins 部署" [ref=e687] [cursor=pointer]:
+                  - /url: /deployment-jenkins/
+              - listitem [ref=e688]:
+                - link "宝塔部署" [ref=e689] [cursor=pointer]:
+                  - /url: /deployment-baota/
+              - listitem [ref=e690]:
+                - link "1Panel 部署" [ref=e691] [cursor=pointer]:
+                  - /url: /deployment-1panel/
+              - listitem [ref=e692]:
+                - link "HTTPS 证书" [ref=e693] [cursor=pointer]:
+                  - /url: /https/
+              - listitem [ref=e694]:
+                - link "服务监控" [ref=e695] [cursor=pointer]:
+                  - /url: /server-monitor/
+              - listitem [ref=e696]:
+                - link "Tomcat WAR 部署" [ref=e697] [cursor=pointer]:
+                  - /url: /deployment-war/
+        - listitem [ref=e698]:
+          - generic [ref=e699]:
+            - paragraph [ref=e700]: 前端手册 Vue 3.x
+            - list [ref=e701]:
+              - listitem [ref=e702]:
+                - link "开发规范" [ref=e703] [cursor=pointer]:
+                  - /url: /vue3/dev-spec/
+              - listitem [ref=e704]:
+                - link "菜单路由" [ref=e705] [cursor=pointer]:
+                  - /url: /vue3/route/
+              - listitem [ref=e706]:
+                - link "Icon 图标" [ref=e707] [cursor=pointer]:
+                  - /url: /vue3/icon/
+              - listitem [ref=e708]:
+                - link "字典数据" [ref=e709] [cursor=pointer]:
+                  - /url: /vue3/dict/
+              - listitem [ref=e710]:
+                - link "系统组件" [ref=e711] [cursor=pointer]:
+                  - /url: /vue3/components/
+              - listitem [ref=e712]:
+                - link "通用方法" [ref=e713] [cursor=pointer]:
+                  - /url: /vue3/util/
+              - listitem [ref=e714]:
+                - link "配置读取" [ref=e715] [cursor=pointer]:
+                  - /url: /vue3/config-center/
+              - listitem [ref=e716]:
+                - link "CRUD 组件" [ref=e717] [cursor=pointer]:
+                  - /url: /vue3/crud-schema/
+              - listitem [ref=e718]:
+                - link "国际化" [ref=e719] [cursor=pointer]:
+                  - /url: /vue3/i18n/
+              - listitem [ref=e720]:
+                - link "IDE 调试" [ref=e721] [cursor=pointer]:
+                  - /url: /vue3/debugger/
+              - listitem [ref=e722]:
+                - link "代码格式化" [ref=e723] [cursor=pointer]:
+                  - /url: /vue3/format/
+        - listitem [ref=e724]:
+          - generic [ref=e725]:
+            - paragraph [ref=e726]: 前端手册 Vben 5.x
+            - list [ref=e727]:
+              - listitem [ref=e728]:
+                - link "开发规范" [ref=e729] [cursor=pointer]:
+                  - /url: /vben5/dev-spec/
+              - listitem [ref=e730]:
+                - link "菜单路由" [ref=e731] [cursor=pointer]:
+                  - /url: /vben5/route/
+              - listitem [ref=e732]:
+                - link "图标、主题、国际化" [ref=e733] [cursor=pointer]:
+                  - /url: /vben5/icon-theme/
+              - listitem [ref=e734]:
+                - link "字典数据" [ref=e735] [cursor=pointer]:
+                  - /url: /vben5/dict/
+              - listitem [ref=e736]:
+                - link "系统组件" [ref=e737] [cursor=pointer]:
+                  - /url: /vben5/components/
+              - listitem [ref=e738]:
+                - link "通用方法" [ref=e739] [cursor=pointer]:
+                  - /url: /vben5/util/
+              - listitem [ref=e740]:
+                - link "配置读取" [ref=e741] [cursor=pointer]:
+                  - /url: /vben5/config-center/
+              - listitem [ref=e742]:
+                - link "IDE 调试" [ref=e743] [cursor=pointer]:
+                  - /url: /vben5/debugger/
+              - listitem [ref=e744]:
+                - link "代码格式化" [ref=e745] [cursor=pointer]:
+                  - /url: /vben5/format/
+        - listitem [ref=e746]:
+          - generic [ref=e747]:
+            - paragraph [ref=e748]: 前端手册 Vue 2.x
+            - list [ref=e749]:
+              - listitem [ref=e750]:
+                - link "开发规范" [ref=e751] [cursor=pointer]:
+                  - /url: /vue2/dev-spec/
+              - listitem [ref=e752]:
+                - link "菜单路由" [ref=e753] [cursor=pointer]:
+                  - /url: /vue2/route/
+              - listitem [ref=e754]:
+                - link "Icon 图标" [ref=e755] [cursor=pointer]:
+                  - /url: /vue2/icon/
+              - listitem [ref=e756]:
+                - link "字典数据" [ref=e757] [cursor=pointer]:
+                  - /url: /vue2/dict/
+              - listitem [ref=e758]:
+                - link "系统组件" [ref=e759] [cursor=pointer]:
+                  - /url: /vue2/components/
+              - listitem [ref=e760]:
+                - link "通用方法" [ref=e761] [cursor=pointer]:
+                  - /url: /vue2/util/
+              - listitem [ref=e762]:
+                - link "配置读取" [ref=e763] [cursor=pointer]:
+                  - /url: /vue2/config-center/
+        - listitem [ref=e764]:
+          - generic [ref=e765]:
+            - paragraph [ref=e766]: 前端手册 Admin Uniapp
+            - list [ref=e767]:
+              - listitem [ref=e768]:
+                - link "开发规范" [ref=e769] [cursor=pointer]:
+                  - /url: /admin-uniapp/dev-spec/
+              - listitem [ref=e770]:
+                - link "菜单路由" [ref=e771] [cursor=pointer]:
+                  - /url: /admin-uniapp/route/
+              - listitem [ref=e772]:
+                - link "图标、主题、国际化" [ref=e773] [cursor=pointer]:
+                  - /url: /admin-uniapp/icon-theme/
+              - listitem [ref=e774]:
+                - link "字典数据" [ref=e775] [cursor=pointer]:
+                  - /url: /admin-uniapp/dict/
+              - listitem [ref=e776]:
+                - link "系统组件" [ref=e777] [cursor=pointer]:
+                  - /url: /admin-uniapp/components/
+              - listitem [ref=e778]:
+                - link "通用方法" [ref=e779] [cursor=pointer]:
+                  - /url: /admin-uniapp/util/
+              - listitem [ref=e780]:
+                - link "IDE 调试" [ref=e781] [cursor=pointer]:
+                  - /url: /admin-uniapp/debugger/
+              - listitem [ref=e782]:
+                - link "代码格式化" [ref=e783] [cursor=pointer]:
+                  - /url: /admin-uniapp/format/
+              - listitem [ref=e784]:
+                - link "运行发布" [ref=e785] [cursor=pointer]:
+                  - /url: /admin-uniapp/deploy/
+        - listitem [ref=e786]:
+          - generic [ref=e787]:
+            - paragraph [ref=e788]: 更新日志
+            - list [ref=e789]:
+              - listitem [ref=e790]:
+                - link "【v2026-06】" [ref=e791] [cursor=pointer]:
+                  - /url: /changelog/2026-06/
+              - listitem [ref=e792]:
+                - link "【v2026-05】" [ref=e793] [cursor=pointer]:
+                  - /url: /changelog/2026-05/
+              - listitem [ref=e794]:
+                - link "【v2026-04】" [ref=e795] [cursor=pointer]:
+                  - /url: /changelog/2026-04/
+              - listitem [ref=e796]:
+                - link "【v2026-03】" [ref=e797] [cursor=pointer]:
+                  - /url: /changelog/2026-03/
+              - listitem [ref=e798]:
+                - link "【v2026-01】" [ref=e799] [cursor=pointer]:
+                  - /url: /changelog/2026-01/
+              - listitem [ref=e800]:
+                - link "【v2025-12】" [ref=e801] [cursor=pointer]:
+                  - /url: /changelog/2025-12/
+              - listitem [ref=e802]:
+                - link "【v2025-11】" [ref=e803] [cursor=pointer]:
+                  - /url: /changelog/2025-11/
+              - listitem [ref=e804]:
+                - link "【v2025-10】" [ref=e805] [cursor=pointer]:
+                  - /url: /changelog/2025-10/
+              - listitem [ref=e806]:
+                - link "【v2025-09】" [ref=e807] [cursor=pointer]:
+                  - /url: /changelog/2025-09/
+              - listitem [ref=e808]:
+                - link "【v2025-08】" [ref=e809] [cursor=pointer]:
+                  - /url: /changelog/2025-08/
+              - listitem [ref=e810]:
+                - link "【v2-6-1】2025-07-19" [ref=e811] [cursor=pointer]:
+                  - /url: /changelog/2.6.1/
+              - listitem [ref=e812]:
+                - link "【v2-6-0】2025-06-07" [ref=e813] [cursor=pointer]:
+                  - /url: /changelog/2.6.0/
+              - listitem [ref=e814]:
+                - link "【v2.5.0】2025-05-13" [ref=e815] [cursor=pointer]:
+                  - /url: /changelog/2.5.0/
+              - listitem [ref=e816]:
+                - link "【v2.4.2】2025-04-12" [ref=e817] [cursor=pointer]:
+                  - /url: /changelog/2.4.2/
+              - listitem [ref=e818]:
+                - link "【v2.4.1】2025-02-09" [ref=e819] [cursor=pointer]:
+                  - /url: /changelog/2.4.1/
+              - listitem [ref=e820]:
+                - link "【v2.4.0】2024-12-31" [ref=e821] [cursor=pointer]:
+                  - /url: /changelog/2.4.0/
+              - listitem [ref=e822]:
+                - link "【v2.3.0】2024-10-07" [ref=e823] [cursor=pointer]:
+                  - /url: /changelog/2.3.0/
+              - listitem [ref=e824]:
+                - link "【v2.2.0】2024-08-02" [ref=e825] [cursor=pointer]:
+                  - /url: /changelog/2.2.0/
+              - listitem [ref=e826]:
+                - link "【v2.1.0】2024-05-05" [ref=e827] [cursor=pointer]:
+                  - /url: /changelog/2.1.0/
+              - listitem [ref=e828]:
+                - link "【v2.0.1】2024-03-01" [ref=e829] [cursor=pointer]:
+                  - /url: /changelog/2.0.1/
+              - listitem [ref=e830]:
+                - link "【v2.0.0】2024-01-26" [ref=e831] [cursor=pointer]:
+                  - /url: /changelog/2.0.0/
+    - main [ref=e833]:
+      - generic [ref=e834]:
+        - generic [ref=e836]:
+          - list [ref=e837]:
+            - listitem [ref=e838]:
+              - link "" [ref=e839] [cursor=pointer]:
+                - /url: /
+              - text: /
+            - listitem [ref=e840]: 开发指南/
+            - listitem [ref=e841]: 后端手册
+          - generic [ref=e842]:
+            - generic "作者" [ref=e843]:
+              - text: 
+              - link "芋道源码" [ref=e844] [cursor=pointer]:
+                - /url: https://www.iocoder.cn
+            - text: 
+        - generic [ref=e888]: 仅 VIP 可见！
+        - paragraph [ref=e850]:
+          - generic [ref=e851]:
+            - text: ←
+            - link "分页实现" [ref=e852] [cursor=pointer]:
+              - /url: /page-feature/
+          - generic [ref=e853]:
+            - link "文件存储（上传下载）" [ref=e854] [cursor=pointer]:
+              - /url: /file/
+            - text: →
+    - generic [ref=e855]:
+      - generic [ref=e856]:
+        - link "" [ref=e857] [cursor=pointer]:
+          - /url: mailto:7685413@qq.com
+        - link "" [ref=e858] [cursor=pointer]:
+          - /url: https://github.com/YunaiV
+        - link "" [ref=e859] [cursor=pointer]:
+          - /url: https://www.iocoder.cn/?yudao
+      - text: Theme by
+      - link "Vdoing" [ref=e860] [cursor=pointer]:
+        - /url: https://github.com/xugaoyi/vuepress-theme-vdoing
+      - text: "| Copyright © 2019-2026 芋道源码 | MIT License"
+    - generic [ref=e861]:
+      - text:  
+      - generic "主题模式" [ref=e862] [cursor=pointer]:     
+  - generic [ref=e864]:
+    - generic [ref=e865]: 🚀 该文档仅「芋道快速开发平台 Boot + Cloud」星球 VIP 用户可见 🚀
+    - generic [ref=e866]:
+      - paragraph [ref=e867]: 知识星球包括 ruoyi-vue-pro 和 yudao-cloud 两个项目:（详细介绍见右侧)
+      - paragraph [ref=e868]:
+        - strong [ref=e869]: 1. 视频教程
+        - text: ": 用户认证、工作流、Web 组件、SaaS 多租户、数据权限等功能的教程"
+      - paragraph [ref=e870]:
+        - strong [ref=e871]: 2. 付费文档
+        - text: ": 包括 RBAC 功能权限、数据权限、SaaS 多租户、SSO 单点登录、工作流、支付中心、商城中心、大屏报表、AI 大模型、IoT 物联网、微信公众号、通知（短信、邮件、站内信）等数 100 篇的使用与设计文档"
+      - paragraph [ref=e872]:
+        - strong [ref=e873]: 3. VIP 功能
+        - text: ": 包括最新 VIP 代码 SQL、代码等，不限于：商城、支付、AI 大模型、IoT 物联网、工作流、ERP、CRM、WMS 等等"
+      - paragraph [ref=e874]:
+        - strong [ref=e875]: 4. 技术解答
+        - text: ": 沉淀 100000+ 关于项目的技术问答与讨论，3 小时获得作者认真解答"
+      - paragraph [ref=e876]:
+        - strong [ref=e877]: 5. 技术专栏
+        - text: ": 70 篇 Spring Boot、30 篇 Spring Cloud Alibaba 系统学习，支持简历优化"
+        - img [ref=e878]
+      - paragraph [ref=e879]:
+        - strong [ref=e880]: 步骤 ①
+        - text: ": [ 打开微信 ] -> [ 扫描上方二维码 ] -> [ 加入知识星球 ]"
+      - paragraph [ref=e881]:
+        - strong [ref=e882]: 步骤 ②
+        - text: ": [ 访问"
+        - link "https://articles.zsxq.com/id_c4fvndpw79uv.html" [ref=e883] [cursor=pointer]:
+          - /url: https://articles.zsxq.com/id_c4fvndpw79uv.html
+        - text: 地址 ] -> [ 搜索“文档码” ]，点击后自动激活
+      - img [ref=e885]
+    - paragraph [ref=e887] [cursor=pointer]: 参考上述步骤操作！加入星球后，也可以点击【此处】激活

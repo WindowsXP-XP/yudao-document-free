@@ -113,6 +113,25 @@
         console.log(`${LOG_PREFIX} 初始清理完成，移除${popups.length}个弹窗`);
     }
 
+    // ========== 主程序入口 ==========
     console.log(`${LOG_PREFIX} 芋道文档VIP弹窗移除器启动`);
+
+    // 第一层：立即注入CSS
+    injectCSS();
+
+    // 第二层和第三层：启动Observer和清理
+    if (document.body) {
+        // body已存在，直接启动
+        setupMutationObserver();
+        removeExistingPopups();
+    } else {
+        // body不存在，等待DOMContentLoaded事件
+        document.addEventListener('DOMContentLoaded', () => {
+            setupMutationObserver();
+            removeExistingPopups();
+        });
+    }
+
+    console.log(`${LOG_PREFIX} 脚本初始化完成`);
 
 })();

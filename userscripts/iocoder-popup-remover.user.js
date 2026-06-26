@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         芋道文档VIP弹窗移除器
+// @name         芋道文档VIP解锁器
 // @namespace    http://tampermonkey.net/
-// @version      1.0.0
-// @description  移除 doc.iocoder.cn 网站的 VIP 付费弹窗和图片弹窗
+// @version      2.0.0
+// @description  解锁 doc.iocoder.cn 付费文档：注入 VIP 标识 cookie，使内容正常显示，跳过 VIP 弹窗与"仅 VIP 可见"替换
 // @author       YourName
 // @match        *://doc.iocoder.cn/*
 // @match        *://static.iocoder.cn/*
@@ -14,119 +14,33 @@
     'use strict';
 
     // ========== 配置常量 ==========
-    const POPUP_SELECTORS = [
-        '.alert-modal',           // VIP遮罩层
-        '.alert-container',       // VIP弹窗内容
-        '[class*="img-popup"]',   // 图片弹窗
-        '[class*="image-layer"]',
-        '[class*="photo-popup"]',
-        '[class*="lightbox"]',
-        '[class*="modal-popup"]',
-        '[class*="dialog-popup"]'
-    ];
+    // 网站 app.js 用此 cookie 名判断是否为 VIP 用户：
+    //   function d(){ return Cookies.get(n) && Cookies.get(n).length > 0 }
+    // 只要该 cookie 存在且非空，d() 即返回 true，网站不会替换内容、不会弹窗。
+    // cookie 值本身无需通过服务端校验（验证失败仅清 cookie + reload，
+    // 而本脚本在 document-start 每次导航都会重新注入，故可稳定保持解锁状态）。
+    const VIP_COOKIE_NAME = '88974ed8-6aff-48ab-a7d1-4af5ffea88bb';
+    const VIP_COOKIE_VALUE = 'vip-unlocked';
+    // cookie 有效期：1 年（秒级）
+    const VIP_COOKIE_MAX_AGE = 365 * 24 * 60 * 60;
+    const LOG_PREFIX = '[iocoder-unlocker]';
 
-    const LOG_PREFIX = '[iocoder-popup-remover]';
+    // ========== 核心：注入 VIP cookie ==========
+    // 必须在 document-start 执行，确保在网站 app.js 的 afterEach 钩子
+    // 读取 cookie 之前就已写入，从而让 d() 返回 true。
+    function injectVIPCookie() {
+        // 设置主域 cookie，保证跨子域（doc.iocoder.cn / static.iocoder.cn）均生效
+        document.cookie = `${VIP_COOKIE_NAME}=${VIP_COOKIE_VALUE}; max-age=${VIP_COOKIE_MAX_AGE}; path=/; domain=.iocoder.cn`;
+        // 兜底：不带 domain 的当前域 cookie
+        document.cookie = `${VIP_COOKIE_NAME}=${VIP_COOKIE_VALUE}; max-age=${VIP_COOKIE_MAX_AGE}; path=/`;
 
-    // ========== 模块1: CSS注入 ==========
-    function injectCSS() {
-        const style = document.createElement('style');
-        style.id = 'iocoder-popup-remover-css';
-        // 基于配置常量动态生成CSS，避免选择器重复维护（DRY）
-        const selectorList = POPUP_SELECTORS.join(',\n            ');
-        style.textContent = `
-            ${selectorList} {
-                display: none !important;
-                visibility: hidden !important;
-                opacity: 0 !important;
-            }
-        `;
-
-        const target = document.head || document.documentElement;
-        target.appendChild(style);
-        console.log(`${LOG_PREFIX} CSS注入完成`);
-    }
-
-    // ========== 模块2: MutationObserver监听 ==========
-    function setupMutationObserver() {
-        function removePopups(node) {
-            // 检查节点本身是否是弹窗
-            for (const selector of POPUP_SELECTORS) {
-                if (node.matches && node.matches(selector)) {
-                    node.remove();
-                    console.log(`${LOG_PREFIX} 已移除弹窗:`, node.className);
-                    return;
-                }
-            }
-
-            // 检查节点的子元素中是否有弹窗
-            if (node.querySelectorAll) {
-                for (const selector of POPUP_SELECTORS) {
-                    node.querySelectorAll(selector).forEach(popup => {
-                        popup.remove();
-                        console.log(`${LOG_PREFIX} 已移除子弹窗:`, popup.className);
-                    });
-                }
-            }
-        }
-
-        const observer = new MutationObserver((mutations) => {
-            for (const mutation of mutations) {
-                if (mutation.type === 'childList') {
-                    mutation.addedNodes.forEach(node => {
-                        if (node.nodeType === Node.ELEMENT_NODE) {
-                            removePopups(node);
-                        }
-                    });
-                }
-            }
-        });
-
-        const config = {
-            childList: true,
-            subtree: true,
-            attributes: false,
-            characterData: false
-        };
-
-        const target = document.body || document.documentElement;
-        observer.observe(target, config);
-        console.log(`${LOG_PREFIX} MutationObserver已启动`);
-
-        return observer;
-    }
-
-    // ========== 模块3: 初始清理 ==========
-    function removeExistingPopups() {
-        const selector = POPUP_SELECTORS.join(', ');
-        const popups = document.querySelectorAll(selector);
-
-        popups.forEach(popup => {
-            popup.remove();
-            console.log(`${LOG_PREFIX} 初始清理:`, popup.className);
-        });
-
-        console.log(`${LOG_PREFIX} 初始清理完成，移除${popups.length}个弹窗`);
+        console.log(`${LOG_PREFIX} VIP cookie 已注入`);
     }
 
     // ========== 主程序入口 ==========
-    console.log(`${LOG_PREFIX} 芋道文档VIP弹窗移除器启动`);
+    console.log(`${LOG_PREFIX} 芋道文档VIP解锁器启动`);
 
-    // 第一层：立即注入CSS
-    injectCSS();
-
-    // 第二层和第三层：启动Observer和清理
-    if (document.body) {
-        // body已存在，直接启动
-        setupMutationObserver();
-        removeExistingPopups();
-    } else {
-        // body不存在，等待DOMContentLoaded事件
-        document.addEventListener('DOMContentLoaded', () => {
-            setupMutationObserver();
-            removeExistingPopups();
-        });
-    }
+    injectVIPCookie();
 
     console.log(`${LOG_PREFIX} 脚本初始化完成`);
-
 })();

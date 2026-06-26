@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>弹窗移除器测试页面</title>
+    <title>VIP解锁器测试页面</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,114 +39,67 @@
             background: #f5f5f5;
             border-radius: 4px;
             font-family: monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
         }
     </style>
 </head>
 <body>
-    <h1>芋道文档VIP弹窗移除器 - 测试页面</h1>
+    <h1>VIP解锁器测试页面</h1>
 
     <div class="test-section">
-        <h3>测试1: 模拟VIP弹窗</h3>
-        <button onclick="createVIPPopup()">创建VIP弹窗</button>
-        <div class="result" id="test1-result">点击按钮后，弹窗应该在200ms内被移除</div>
+        <h3>测试1: 检查 VIP cookie 是否注入</h3>
+        <button onclick="checkCookieInjected()">检查 cookie</button>
+        <div class="result" id="test1-result">点击按钮检查 88974ed8-... cookie 是否存在（需在油猴环境中运行）</div>
     </div>
 
     <div class="test-section">
-        <h3>测试2: 模拟图片弹窗</h3>
-        <button onclick="createImagePopup()">创建图片弹窗</button>
-        <div class="result" id="test2-result">点击按钮后，图片弹窗应该被移除</div>
+        <h3>测试2: 模拟注入 cookie</h3>
+        <button onclick="simulateInject()">模拟脚本注入 cookie</button>
+        <div class="result" id="test2-result">点击按钮模拟脚本行为，写入 VIP cookie</div>
     </div>
 
     <div class="test-section">
-        <h3>测试3: 批量弹窗</h3>
-        <button onclick="createMultiplePopups()">创建多个弹窗</button>
-        <div class="result" id="test3-result">所有弹窗应该被移除</div>
+        <h3>测试3: 验证解锁效果（跳转真实页面）</h3>
+        <button onclick="window.open('https://doc.iocoder.cn/vo/', '_blank')">访问 /vo/ 文档</button>
+        <button onclick="window.open('https://doc.iocoder.cn/bpm/', '_blank')">访问 /bpm/ 文档</button>
+        <div class="result" id="test3-result">点击按钮在真实站点验证解锁效果：应看到完整文档内容，而非"仅 VIP 可见！"</div>
     </div>
 
     <div class="test-section">
-        <h3>测试4: CSS注入验证</h3>
-        <button onclick="checkCSSInjection()">检查CSS注入</button>
-        <div class="result" id="test4-result">点击按钮检查样式是否存在</div>
+        <h3>测试4: 查看 cookie 详情</h3>
+        <button onclick="showCookies()">查看所有 cookie</button>
+        <div class="result" id="test4-result">显示当前域所有 cookie</div>
     </div>
 
     <script>
-        // 模拟VIP弹窗
-        function createVIPPopup() {
-            const modal = document.createElement('div');
-            modal.className = 'alert-modal';
-            modal.style.cssText = 'position:fixed;z-index:1000;background:rgba(0,0,0,0.7);width:100%;height:100%;';
-            document.body.appendChild(modal);
+        const COOKIE_NAME = '88974ed8-6aff-48ab-a7d1-4af5ffea88bb';
 
-            const container = document.createElement('div');
-            container.className = 'alert-container';
-            container.style.cssText = 'position:fixed;z-index:1001;background:white;width:300px;height:200px;top:50%;left:50%;margin-left:-150px;margin-top:-100px;padding:20px;';
-            container.innerHTML = '<h2>VIP弹窗测试</h2><p>这是一个模拟的VIP弹窗</p>';
-            document.body.appendChild(container);
-
-            document.getElementById('test1-result').textContent = '弹窗已创建，等待移除...';
-
-            setTimeout(() => {
-                const stillExists = document.querySelector('.alert-modal, .alert-container');
-                document.getElementById('test1-result').textContent = stillExists
-                    ? 'X 测试失败：弹窗未被移除'
-                    : 'OK 测试成功：弹窗已被移除';
-            }, 200);
+        // 测试1：检查 cookie 是否被油猴脚本注入
+        function checkCookieInjected() {
+            const cookies = document.cookie;
+            const injected = cookies.includes(COOKIE_NAME);
+            document.getElementById('test1-result').textContent =
+                injected
+                    ? '[PASS] VIP cookie 已存在（油猴脚本生效）：\n' + cookies
+                    : '[FAIL] 未检测到 VIP cookie（需在油猴环境运行本测试页或脚本未生效）';
         }
 
-        // 模拟图片弹窗
-        function createImagePopup() {
-            const popup = document.createElement('div');
-            popup.className = 'img-popup-layer';
-            popup.style.cssText = 'position:fixed;z-index:999;background:yellow;width:200px;height:150px;top:100px;left:100px;padding:20px;';
-            popup.innerHTML = '<h3>图片弹窗测试</h3>';
-            document.body.appendChild(popup);
-
-            document.getElementById('test2-result').textContent = '图片弹窗已创建，等待移除...';
-
-            setTimeout(() => {
-                const stillExists = document.querySelector('[class*="img-popup"]');
-                document.getElementById('test2-result').textContent = stillExists
-                    ? 'X 测试失败：图片弹窗未被移除'
-                    : 'OK 测试成功：图片弹窗已被移除';
-            }, 200);
+        // 测试2：模拟脚本注入逻辑
+        function simulateInject() {
+            const maxAge = 365 * 24 * 60 * 60;
+            document.cookie = COOKIE_NAME + '=vip-unlocked; max-age=' + maxAge + '; path=/';
+            const ok = document.cookie.includes(COOKIE_NAME);
+            document.getElementById('test2-result').textContent =
+                ok
+                    ? '[PASS] 模拟注入成功，cookie 已写入'
+                    : '[FAIL] 模拟注入失败';
         }
 
-        // 批量弹窗
-        function createMultiplePopups() {
-            const types = ['alert-modal', 'alert-container', 'lightbox-test'];
-            types.forEach((type, i) => {
-                const popup = document.createElement('div');
-                popup.className = type;
-                popup.style.cssText = `position:fixed;z-index:${1000+i};background:red;width:100px;height:100px;top:${100+i*50}px;left:${100+i*50}px;`;
-                popup.textContent = `弹窗 ${i+1}: ${type}`;
-                document.body.appendChild(popup);
-            });
-
-            document.getElementById('test3-result').textContent = '已创建3个弹窗，等待移除...';
-
-            setTimeout(() => {
-                const remaining = document.querySelectorAll('.alert-modal, .alert-container, [class*="lightbox"]');
-                document.getElementById('test3-result').textContent = remaining.length === 0
-                    ? 'OK 测试成功：所有弹窗已被移除'
-                    : `X 测试失败：仍有 ${remaining.length} 个弹窗`;
-            }, 200);
-        }
-
-        // 检查CSS注入
-        function checkCSSInjection() {
-            const style = document.getElementById('iocoder-popup-remover-css');
-            if (style) {
-                const hasImportant = style.textContent.includes('!important');
-                const hasAlertModal = style.textContent.includes('.alert-modal');
-                const hasAlertContainer = style.textContent.includes('.alert-container');
-
-                document.getElementById('test4-result').textContent =
-                    hasImportant && hasAlertModal && hasAlertContainer
-                        ? 'OK CSS注入正确：包含所有必要规则'
-                        : '! CSS存在但规则不完整';
-            } else {
-                document.getElementById('test4-result').textContent = 'X 未检测到CSS注入（需要在油猴中运行）';
-            }
+        // 测试4：查看所有 cookie
+        function showCookies() {
+            const cookies = document.cookie || '(无 cookie)';
+            document.getElementById('test4-result').textContent = cookies;
         }
     </script>
 </body>

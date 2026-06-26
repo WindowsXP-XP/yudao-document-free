@@ -1,0 +1,5 @@
+# Playwright MCP 临时输出
+.playwright-mcp/
+
+# 调试临时文件
+.tmp-*

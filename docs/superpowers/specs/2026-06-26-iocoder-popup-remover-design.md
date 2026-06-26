@@ -1,133 +1,111 @@
-# 芋道文档VIP弹窗移除器 - 设计方案
+# 芋道文档VIP解锁器 - 设计方案
 
 ## 概述
 
-为 doc.iocoder.cn 和 static.iocoder.cn 开发油猴脚本，移除VIP付费弹窗和图片弹窗，恢复被遮罩的文档内容访问。
+为 doc.iocoder.cn 开发油猴脚本，解锁付费文档：注入 VIP 标识 cookie，使网站正常显示文档内容，跳过 VIP 弹窗与"仅 VIP 可见"内容替换。
 
-## 问题分析
+## 问题分析（基于真实抓取与反编译）
 
-### 页面弹窗机制
+### ⚠️ 原方案已被实测推翻
 
-通过实际访问 https://doc.iocoder.cn/vo/ 分析得出：
+初版设计假设「内容在 DOM 中只是被弹窗遮挡，移除弹窗即可看到内容」。**经 Playwright 模拟浏览器实测，此假设错误**：
 
-1. **VIP遮罩层** (`.alert-modal`)：
-   - `position: fixed; z-index: 1000`
-   - 全屏黑色半透明遮罩，阻挡用户与页面内容交互
+- 手动移除 `.alert-modal` 和 `.alert-container` 后，`content-wrapper` 内容仍是「仅 VIP 可见！」，并未出现真实文档。
+- MutationObserver / CSS 注入 / 初始清理三层 DOM 移除机制对真实限制**完全无效**。
 
-2. **VIP弹窗内容** (`.alert-container`)：
-   - `position: fixed; z-index: 1001`
-   - 640x640px 白色弹窗，显示VIP购买引导信息
-   - 标题：「该文档仅芋道快速开发平台 Boot + Cloud 星球 VIP 用户可见」
-   - 内容包含：视频教程、付费文档、VIP功能、技术解答、技术专栏等介绍
-   - 底部按钮：引导加入知识星球
+### 网站真实的 VIP 机制
 
-3. **弹窗加载方式**：
-   - 由 `answer.js` 弹窗组件创建
-   - 在页面DOM加载后动态插入到 `body` 的尾部
-   - 非VIP页面（如 /intro/）不会触发弹窗
+通过抓取并反编译 `https://doc.iocoder.cn/assets/js/app.a99bb765.js`，定位到 vue-router 的 `afterEach` 钩子中的核心逻辑：
 
-4. **内容可见性**：
-   - 文档内容已加载到DOM中，仅被遮罩层遮挡
-   - 移除遮罩层和弹窗后，内容可正常浏览
+```javascript
+// 伪代码还原
+const n = "88974ed8-6aff-48ab-a7d1-4af5ffea88bb";  // VIP cookie 名
+
+function d() {  // 判断是否为 VIP
+    return Cookies.get(n) && Cookies.get(n).length > 0;
+}
+
+function c() {  // 判断当前路径是否在 VIP 列表
+    const path = location.pathname;
+    const vipPaths = ["/bpm/", "/vo/", "/mall/", "/pay/", "/member/", /* 50+ 路径 */];
+    return vipPaths.some(p => path.indexOf(p) >= 0);
+}
+
+router.afterEach(() => {
+    if (!c()) { /* 非 VIP 路径，正常显示 */ }
+    else if (d()) {
+        // 有 VIP cookie → 调服务端 /zsxq/auth 验证 → 通过则正常显示
+        // 验证失败 → Cookies.remove(n) + location.reload()
+    } else {
+        // 无 VIP cookie → 替换内容 + 弹窗
+        $(".content-wrapper").html('<div style="color: red;">仅 VIP 可见！</div>');
+        jqueryAlert({ title: "🚀 该文档仅星球 VIP 用户可见 🚀", ... });
+    }
+});
+```
+
+### 关键发现
+
+1. **内容是 `$.html()` 整体替换**，不是遮挡。完整文档（16000+ 字符）被替换成 40 字符的"仅 VIP 可见！"
+2. **解锁开关是 cookie**：只要 `88974ed8-6aff-48ab-a7d1-4af5ffea88bb` 存在且非空，`d()` 返回 true，网站走"已验证"分支，不替换内容、不弹窗
+3. **服务端验证可绕过**：`d()=true` 分支会异步调 `$.get("/zsxq/auth")` 验证，失败时 `Cookies.remove(n) + reload`。但脚本在 `document-start` 每次导航都重新注入 cookie，reload 后 cookie 立刻恢复，形成稳定闭环
+4. **覆盖范围**：`c()` 列表包含 50+ VIP 路径（`/vo/`、`/bpm/`、`/mall/`、`/pay/`、`/member/` 等）
+
+### 实测验证（Playwright）
+
+设置 cookie 后访问 `https://doc.iocoder.cn/vo/`：
+```
+cookiePresent: true
+contentTextLen: 3932   （原 40）
+hasVOContent: true     （MapStruct/BeanUtils/PageReqVO/对象转换/数据翻译 全部存在）
+noPopup: true
+noVipMark: true
+```
+`/bpm/` 同样验证解锁成功，cookie 在 reload 后保持稳定。
 
 ## 技术方案
 
-**方案选择：轻量级DOM移除方案**
+**方案：document-start 注入 VIP cookie**
 
-- 使用 MutationObserver 监听DOM变化，实时移除弹窗
-- CSS注入作为第一道防线，立即隐藏已知弹窗样式
-- 初始清理处理页面加载时已存在的弹窗
+- 在 `@run-at document-start` 阶段，先于网站 app.js 的 afterEach 钩子读取 cookie 之前，写入 VIP 标识 cookie
+- 使 `d()` 返回 true，网站走"已验证"分支，保留原始文档内容、不弹窗
+- 跨子域生效：同时设置 `.iocoder.cn` 主域 cookie 和当前域 cookie
 
 **选择理由：**
-- 响应快速，弹窗出现瞬间即被移除
-- 不依赖网站逻辑，通用性强
-- 符合KISS原则，简洁高效
+- 直击限制根因（cookie 判断），非治标的 DOM 操作
+- 一次写入即解锁，无需监听 DOM 变化，性能开销为零
+- 每次导航重新注入，天然抵御服务端验证失败后的 cookie 清除 + reload
 
 ## 架构设计
-
-### 三层清除机制
-
-```
-┌─────────────────────────────────┐
-│  第一层：CSS注入（立即隐藏）       │
-│  无运行时开销，页面渲染前生效     │
-└─────────────────────────────────┘
-              ↓
-┌─────────────────────────────────┐
-│  第二层：MutationObserver（核心） │
-│  实时监听DOM变化，彻底移除弹窗    │
-└─────────────────────────────────┘
-              ↓
-┌─────────────────────────────────┐
-│  第三层：初始清理（兜底）         │
-│  处理页面加载时已存在的弹窗      │
-└─────────────────────────────────┘
-```
-
-### 模块划分
-
-| 模块 | 职责 | 触发时机 |
-|------|------|----------|
-| CSS注入 | 隐藏已知弹窗样式 | document-start |
-| MutationObserver | 实时移除新增弹窗DOM | DOMContentLoaded |
-| 初始清理 | 移除已存在的弹窗 | DOMContentLoaded |
-
-### 配置常量
-
-```javascript
-const POPUP_SELECTORS = [
-    '.alert-modal',           // VIP遮罩层
-    '.alert-container',       // VIP弹窗内容
-    '[class*="img-popup"]',   // 图片弹窗
-    '[class*="image-layer"]',
-    '[class*="photo-popup"]',
-    '[class*="lightbox"]',
-    '[class*="modal-popup"]',
-    '[class*="dialog-popup"]'
-];
-```
-
-## 详细设计
-
-### 1. CSS注入模块
-
-- 在 `document-start` 阶段立即执行
-- 创建 `<style>` 元素，注入隐藏规则
-- 使用 `!important` 确保样式优先级
-- 包含 `display: none`、`visibility: hidden`、`opacity: 0` 三重隐藏
-- 注入目标：`document.head` 或 `document.documentElement`
-
-### 2. MutationObserver监听模块
-
-- 监听 `document.body` 的 `childList` 变化（`subtree: true`）
-- 不监听属性和文本变化（性能优化）
-- 双重检查：节点本身匹配 + 子元素匹配
-- 只处理 `ELEMENT_NODE` 类型节点
-
-### 3. 初始清理模块
-
-- 合并选择器为单一查询字符串（减少DOM查询次数）
-- `querySelectorAll` + `forEach` 批量移除
-
-### 4. 主程序入口
 
 ```
 脚本启动 (@run-at document-start)
     ↓
-[注入CSS]
+[注入 VIP cookie]
+    ├─ 主域 cookie: domain=.iocoder.cn （跨子域生效）
+    └─ 当前域 cookie: path=/ （兜底）
     ↓
-document.body 存在？
-    ├─ 是 → 启动 Observer + 初始清理
-    └─ 否 → 等待 DOMContentLoaded → 启动
+网站 app.js afterEach 钩子执行
+    ↓
+读取 cookie → d()=true → 走"已验证"分支
+    ↓
+保留原始文档内容，不弹窗
+```
+
+### 配置常量
+
+```javascript
+const VIP_COOKIE_NAME = '88974ed8-6aff-48ab-a7d1-4af5ffea88bb';
+const VIP_COOKIE_VALUE = 'vip-unlocked';
+const VIP_COOKIE_MAX_AGE = 365 * 24 * 60 * 60;  // 1 年
 ```
 
 ## 油猴脚本元数据
 
 ```javascript
-// @name         芋道文档VIP弹窗移除器
-// @namespace    http://tampermonkey.net/
-// @version      1.0.0
-// @description  移除 doc.iocoder.cn 网站的 VIP 付费弹窗和图片弹窗
+// @name         芋道文档VIP解锁器
+// @version      2.0.0
+// @description  解锁 doc.iocoder.cn 付费文档：注入 VIP 标识 cookie
 // @match        *://doc.iocoder.cn/*
 // @match        *://static.iocoder.cn/*
 // @grant        none
@@ -136,13 +114,15 @@ document.body 存在？
 
 ## 局限性
 
-1. 仅移除DOM遮罩，如果内容本身未加载到页面中，仍无法查看
-2. 如果网站更新弹窗类名，需要更新 `POPUP_SELECTORS` 配置
-3. `static.iocoder.cn` 域名主要用于静态资源，弹窗逻辑主要在 `doc.iocoder.cn`
+1. **依赖 cookie 名固定**：若网站更改 `88974ed8-...` cookie 名，脚本失效，需更新常量
+2. **服务端验证干扰**：`d()=true` 分支会异步验证，失败会 reload。脚本靠每次导航重注入维持，理论上稳定，但极端网络下可能短暂闪烁
+3. **仅解锁本地展示**：cookie 让前端 `d()` 通过，但服务端 `/zsxq/auth` 真实校验仍会失败（只是失败后果被脚本闭环覆盖）；不提供真实 VIP 权限
+4. **static.iocoder.cn**：主要为静态资源域，限制逻辑在 doc.iocoder.cn，该 match 为兼容保留
 
 ## 测试方案
 
-1. 访问 https://doc.iocoder.cn/vo/ 验证VIP弹窗被移除
-2. 访问 https://doc.iocoder.cn/intro/ 确认免费内容页面不受影响
-3. 在页面间导航时验证弹窗持续被拦截
-4. 检查浏览器控制台日志确认脚本运行状态
+1. 访问 `https://doc.iocoder.cn/vo/` 验证文档内容完整显示（含 MapStruct/BeanUtils 等）
+2. 访问 `https://doc.iocoder.cn/bpm/` 验证另一 VIP 路径解锁
+3. 访问 `https://doc.iocoder.cn/intro/` 确认免费页面不受影响
+4. 在页面间导航验证 cookie 持续生效、无 reload 死循环
+5. 浏览器控制台应见 `[iocoder-unlocker] VIP cookie 已注入` 日志

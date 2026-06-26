@@ -31,15 +31,10 @@
     function injectCSS() {
         const style = document.createElement('style');
         style.id = 'iocoder-popup-remover-css';
+        // 基于配置常量动态生成CSS，避免选择器重复维护（DRY）
+        const selectorList = POPUP_SELECTORS.join(',\n            ');
         style.textContent = `
-            .alert-modal,
-            .alert-container,
-            [class*="img-popup"],
-            [class*="image-layer"],
-            [class*="photo-popup"],
-            [class*="lightbox"],
-            [class*="modal-popup"],
-            [class*="dialog-popup"] {
+            ${selectorList} {
                 display: none !important;
                 visibility: hidden !important;
                 opacity: 0 !important;

@@ -2,7 +2,7 @@
 
 > Chrome / Edge 浏览器扩展（Manifest V3），解锁 `doc.iocoder.cn` 付费（VIP）文档，**SPA 路由切换下稳定生效**。
 
-![version](https://img.shields.io/badge/version-2.2.0-blue)
+![version](https://img.shields.io/badge/version-1.0.0-blue)
 ![manifest](https://img.shields.io/badge/Manifest-V3-orange)
 ![platform](https://img.shields.io/badge/platform-Chrome%20%7C%20Edge-green)
 ![license](https://img.shields.io/badge/license-MIT-lightgrey)
@@ -155,17 +155,6 @@ const VIP_COOKIE_NAME = '88974ed8-6aff-48ab-a7d1-4af5ffea88bb';
 
 ---
 
-## 📜 版本演进
-
-| 版本 | 说明 |
-| --- | --- |
-| v1.x | 油猴脚本方案（已废弃） |
-| v2.0.0 | cookie 注入解锁方案 |
-| v2.1.0 | 拦截 auth 校验解决 SPA 路由切换拦截 |
-| v2.2.0 | 拦截 `XMLHttpRequest` 原生层彻底解决 SPA 拦截（当前版本） |
-
----
-
 ## ⚖️ 免责声明
 
 本项目仅供**学习与技术研究所用**，旨在分析前端鉴权机制与浏览器扩展开发实践。
@@ -174,6 +163,12 @@ const VIP_COOKIE_NAME = '88974ed8-6aff-48ab-a7d1-4af5ffea88bb';
 - 请**支持正版**，如需长期、完整、稳定访问付费文档，请前往 [芋道源码](https://www.iocoder.cn/) 购买 VIP
 - 使用本项目产生的一切后果由使用者自行承担，作者不对任何因使用或滥用本项目造成的直接或间接损失负责
 - 若本项目侵犯了站点权益，请联系作者删除
+
+---
+
+## 🙏 鸣谢
+
+- [linux.do](https://linux.do) —— 感谢社区在浏览器扩展开发、前端逆向分析等方向的交流与启发
 
 ---
 

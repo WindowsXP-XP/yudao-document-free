@@ -1,0 +1,12 @@
+{
+  "name": "yudao-document-free",
+  "private": true,
+  "description": "芋道文档VIP解锁器 - 浏览器扩展项目（含 Puppeteer 真实浏览器自动化测试）",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node tests/extension-test.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^25.2.1"
+  }
+}

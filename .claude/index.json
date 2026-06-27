@@ -7,7 +7,7 @@
     "summary": "芋道文档VIP解锁器：Chrome/Edge MV3 浏览器扩展，解锁 doc.iocoder.cn 付费文档（注入 VIP cookie + 劫持 XHR auth 校验 + 防 cookie 清除）",
     "type": "browser-extension",
     "primary_language": "JavaScript",
-    "current_version": "2.2.0",
+    "current_version": "1.0.0",
     "target_site": "doc.iocoder.cn"
   },
   "ignore_rules": {
@@ -101,7 +101,6 @@
     "无 CI/CD 配置（.github/workflows 等）",
     "无 lint/format 工具（ESLint/Prettier）",
     "tests/extension-test.js Chrome 路径硬编码 Windows 默认路径",
-    "历史方案 userscripts/ 与 docs/superpowers/ 已从工作区删除（git status D），归档缺失",
     ".spec-workflow/ 未深度扫描（工具模板）"
   ],
   "next_steps": [
@@ -109,14 +108,5 @@
     "建议补声明 package.json dependencies: puppeteer-core，并取消忽略 package.json",
     "建议参数化 tests/extension-test.js 的 Chrome 路径（环境变量或 CLI 参数）",
     "建议新增 .github/workflows/test.yml 跑 node tests/extension-test.js（headless 模式）"
-  ],
-  "files_deleted_in_working_tree": [
-    "docs/superpowers/plans/2026-06-26-iocoder-popup-remover.md",
-    "docs/superpowers/specs/2026-06-26-iocoder-popup-remover-design.md",
-    "tests/popup-remover-test.html",
-    "tests/real-site-test.js",
-    "tests/run-test.js",
-    "userscripts/README.md",
-    "userscripts/iocoder-popup-remover.user.js"
   ]
 }

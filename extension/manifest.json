@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "芋道文档VIP解锁器",
-    "version": "2.2.0",
+    "version": "1.0.0",
     "description": "解锁 doc.iocoder.cn 付费文档：注入 VIP cookie + 拦截 auth 校验，SPA 路由切换下稳定解锁",
     "permissions": [],
     "host_permissions": [

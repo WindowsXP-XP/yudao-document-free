@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-06-27T10:13:41",
+  "generator": "init-architect",
+  "project": {
+    "name": "yudao-document-free",
+    "root": "E:/Code/ai/yudao-document-free",
+    "summary": "芋道文档VIP解锁器：Chrome/Edge MV3 浏览器扩展，解锁 doc.iocoder.cn 付费文档（注入 VIP cookie + 劫持 XHR auth 校验 + 防 cookie 清除）",
+    "type": "browser-extension",
+    "primary_language": "JavaScript",
+    "current_version": "2.2.0",
+    "target_site": "doc.iocoder.cn"
+  },
+  "ignore_rules": {
+    "source": ".gitignore + defaults",
+    "patterns": [
+      ".playwright-mcp/",
+      ".tmp-*",
+      "node_modules/",
+      "package.json",
+      "package-lock.json",
+      "tests/screenshots/",
+      ".git/**",
+      "dist/**",
+      "build/**"
+    ]
+  },
+  "modules": [
+    {
+      "path": "extension",
+      "name": "浏览器扩展核心",
+      "language": "JavaScript",
+      "type": "business",
+      "entry": "extension/content.js",
+      "manifest": "extension/manifest.json",
+      "interfaces": [],
+      "tests": ["tests/extension-test.js"],
+      "important_paths": [
+        "extension/manifest.json",
+        "extension/content.js",
+        "extension/README.md"
+      ],
+      "claude_md": "extension/CLAUDE.md",
+      "coverage": "full",
+      "gaps": []
+    },
+    {
+      "path": "tests",
+      "name": "Puppeteer 自动化测试",
+      "language": "JavaScript (Node.js CJS)",
+      "type": "test",
+      "entry": "tests/extension-test.js",
+      "interfaces": [],
+      "tests": [],
+      "important_paths": [
+        "tests/extension-test.js"
+      ],
+      "claude_md": "tests/CLAUDE.md",
+      "coverage": "full",
+      "gaps": [
+        "Chrome 路径硬编码 (第8行)",
+        "无 CI 兼容 (headless: false)"
+      ]
+    },
+    {
+      "path": ".spec-workflow",
+      "name": "规范工作流模板（工具目录）",
+      "language": "Markdown",
+      "type": "tooling-templates",
+      "entry": null,
+      "interfaces": [],
+      "tests": [],
+      "important_paths": [
+        ".spec-workflow/templates/requirements-template.md",
+        ".spec-workflow/templates/design-template.md",
+        ".spec-workflow/templates/tasks-template.md",
+        ".spec-workflow/templates/product-template.md",
+        ".spec-workflow/templates/tech-template.md",
+        ".spec-workflow/templates/structure-template.md",
+        ".spec-workflow/user-templates/README.md"
+      ],
+      "claude_md": null,
+      "coverage": "listed-only",
+      "gaps": ["仅登记路径，未生成模块级 CLAUDE.md（非业务代码）"]
+    }
+  ],
+  "root_claude_md": "CLAUDE.md",
+  "coverage": {
+    "estimated_total_source_files": 13,
+    "scanned_files": 13,
+    "percentage": 100,
+    "truncated": false,
+    "per_module_summary": {
+      "extension": "3/3 文件已读取 (manifest.json, content.js, README.md)",
+      "tests": "1/1 文件已读取 (extension-test.js)",
+      ".spec-workflow": "7 个模板仅登记路径未读内容（工具模板，非业务）",
+      "root": "package.json + .gitignore 已读取"
+    }
+  },
+  "global_gaps": [
+    "根 package.json 未声明 puppeteer-core 依赖（且被 .gitignore 忽略）",
+    "无 CI/CD 配置（.github/workflows 等）",
+    "无 lint/format 工具（ESLint/Prettier）",
+    "tests/extension-test.js Chrome 路径硬编码 Windows 默认路径",
+    "历史方案 userscripts/ 与 docs/superpowers/ 已从工作区删除（git status D），归档缺失",
+    ".spec-workflow/ 未深度扫描（工具模板）"
+  ],
+  "next_steps": [
+    "若需补全：可深扫 .spec-workflow/templates/* 内容，将规范模板纳入项目文档体系",
+    "建议补声明 package.json dependencies: puppeteer-core，并取消忽略 package.json",
+    "建议参数化 tests/extension-test.js 的 Chrome 路径（环境变量或 CLI 参数）",
+    "建议新增 .github/workflows/test.yml 跑 node tests/extension-test.js（headless 模式）"
+  ],
+  "files_deleted_in_working_tree": [
+    "docs/superpowers/plans/2026-06-26-iocoder-popup-remover.md",
+    "docs/superpowers/specs/2026-06-26-iocoder-popup-remover-design.md",
+    "tests/popup-remover-test.html",
+    "tests/real-site-test.js",
+    "tests/run-test.js",
+    "userscripts/README.md",
+    "userscripts/iocoder-popup-remover.user.js"
+  ]
+}

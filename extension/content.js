@@ -1,6 +1,5 @@
 // 芋道文档VIP解锁器 - Chrome扩展 content script
-// 与油猴脚本 v2.2.0 逻辑完全一致，运行在 MAIN world（页面主上下文）
-// 这样能拦截页面自身的 XMLHttpRequest（网站用 jQuery $.get 走 XHR）
+// 运行在 MAIN world（页面主上下文），拦截页面自身的 XMLHttpRequest（网站用 jQuery $.get 走 XHR）
 
 (function() {
     'use strict';

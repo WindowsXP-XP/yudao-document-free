@@ -1,6 +1,6 @@
 # 芋道文档VIP解锁器 - 浏览器扩展
 
-Chrome / Edge 浏览器扩展，解锁 doc.iocoder.cn 付费文档。与油猴脚本版本逻辑一致（v2.2.0），作为油猴的独立替代方案，用于排除油猴注入环境问题。
+Chrome / Edge 浏览器扩展，解锁 doc.iocoder.cn 付费文档：注入 VIP cookie + 拦截 auth 校验，SPA 路由切换下稳定解锁。
 
 ## 工作原理
 
@@ -56,7 +56,7 @@ const VIP_COOKIE_NAME = '88974ed8-6aff-48ab-a7d1-4af5ffea88bb';
 ```
 extension/
   ├── manifest.json   # MV3 清单（content_scripts + world:MAIN）
-  └── content.js      # 解锁逻辑（与油猴脚本一致）
+  └── content.js      # 解锁逻辑
 ```
 
 ## 已知局限
@@ -64,9 +64,3 @@ extension/
 1. 依赖 cookie 名固定，网站更改则需更新常量
 2. `world: MAIN` 让脚本运行在页面主上下文以拦截页面 XHR，需 Chrome 111+ / Edge 111+
 3. 仅解锁前端展示，不提供真实 VIP 权限
-
-## 更新日志
-
-### v2.2.0 (2026-06-26)
-- 初始扩展版本，逻辑与油猴脚本 v2.2.0 一致
-- content script 运行在 `document_start` + `MAIN` world

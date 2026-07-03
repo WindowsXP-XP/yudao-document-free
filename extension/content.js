@@ -22,9 +22,33 @@
     // ========== 第一层：注入 VIP cookie ==========
     // document_start 执行，先于网站 app.js 的 afterEach 读取 cookie，让 d()=true
     function injectVIPCookie() {
-        document.cookie = `${VIP_COOKIE_NAME}=${VIP_COOKIE_VALUE}; max-age=${VIP_COOKIE_MAX_AGE}; path=/; domain=.iocoder.cn`;
-        document.cookie = `${VIP_COOKIE_NAME}=${VIP_COOKIE_VALUE}; max-age=${VIP_COOKIE_MAX_AGE}; path=/`;
-        console.log(`${LOG_PREFIX} VIP cookie 已注入`);
+        // 获取当前域名，分别处理 doc / cloud / static
+        const hostname = location.hostname;
+        const cookieBase = `${VIP_COOKIE_NAME}=${VIP_COOKIE_VALUE}; max-age=${VIP_COOKIE_MAX_AGE}; path=/; SameSite=Lax`;
+
+        // 1. 当前域的 cookie（必须，默认行为）
+        document.cookie = cookieBase;
+
+        // 2. 尝试设置 .iocoder.cn 顶级域（部分浏览器支持，允许跨子域共享）
+        try {
+            document.cookie = `${cookieBase}; domain=.iocoder.cn`;
+        } catch (e) {
+            // 某些浏览器/安全策略下可能拒绝，静默失败
+        }
+
+        // 3. 兜底：为已知的三个子域各设一份（确保 doc/cloud/static 都能读到）
+        const domains = ['doc.iocoder.cn', 'cloud.iocoder.cn', 'static.iocoder.cn'];
+        domains.forEach(domain => {
+            if (hostname !== domain) {
+                try {
+                    document.cookie = `${cookieBase}; domain=${domain}`;
+                } catch (e) {
+                    // 跨域设置可能失败，静默忽略
+                }
+            }
+        });
+
+        console.log(`${LOG_PREFIX} VIP cookie 已注入 (当前域: ${hostname})`);
     }
 
     // ========== 第二层：拦截原生 XMLHttpRequest 的 auth 校验 ==========

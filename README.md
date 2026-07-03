@@ -51,13 +51,15 @@
 ```
 [iocoder-unlocker] 芋道文档VIP解锁器启动
 [iocoder-unlocker] XMLHttpRequest 劫持完成
-[iocoder-unlocker] VIP cookie 已注入
+[iocoder-unlocker] VIP cookie 已注入 (当前域: doc.iocoder.cn)
 [iocoder-unlocker] 脚本初始化完成
 [iocoder-unlocker] Cookies.remove 保护完成
 [iocoder-unlocker] 已拦截 auth 校验请求: ...
 ```
 
 访问 <https://doc.iocoder.cn/vo/>，应看到完整的「VO 对象转换、数据翻译」文档，而非「仅 VIP 可见！」。快速切换多个左侧侧边栏 VIP 链接，应**稳定显示内容**（不 reload、不拦截）。
+
+**跨子域支持**：扩展通过多层 cookie 注入策略（当前域 + 顶级域 + 各子域独立设置 + 显式 `SameSite=Lax`）同时支持 `doc.iocoder.cn`、`cloud.iocoder.cn`、`static.iocoder.cn`，确保 macOS/Linux/Windows 跨平台兼容。
 
 ---
 
@@ -89,7 +91,7 @@ flowchart TD
 
 | 层级 | 机制 | 作用 |
 | --- | --- | --- |
-| 第一层 | `document.cookie` 注入 VIP cookie | 让站点 `d()` 判定返回 `true` |
+| 第一层 | `document.cookie` 多层注入策略 | 当前域 + 顶级域 `.iocoder.cn` + 各子域独立设置，显式 `SameSite=Lax`，确保跨平台/跨子域兼容，让站点 `d()` 判定返回 `true` |
 | 第二层 | 劫持 `XMLHttpRequest.prototype.open/send` | 拦截 `/zsxq/auth`，伪造 `status=200, response="true"`，校验恒通过 |
 | 第三层 | 覆盖 `js.cookie` 的 `Cookies.remove` | 兜底禁止清除 VIP cookie |
 | 路由层 | 劫持 `history.pushState/replaceState` + `popstate` 监听 | SPA 路由切换后自动补注入 cookie |
@@ -103,12 +105,11 @@ yudao-document-free/
 ├── extension/              # MV3 浏览器扩展（核心交付物）
 │   ├── manifest.json       # MV3 清单（content_scripts + world: MAIN）
 │   ├── content.js          # 三层解锁逻辑
-│   ├── README.md           # 扩展模块说明
-│   └── CLAUDE.md           # 模块级 AI 上下文
+│   └── README.md           # 扩展模块说明
 ├── tests/                  # Puppeteer-core 自动化测试
-│   ├── extension-test.js   # 真实 Chrome 三轮验证
-│   └── CLAUDE.md           # 模块级 AI 上下文
-├── CLAUDE.md               # 根级 AI 上下文索引
+│   └── extension-test.js   # 真实 Chrome 三轮验证
+├── package.json            # 测试依赖声明与 npm test 入口
+├── .gitignore              # 忽略 node_modules、各 CLAUDE.md 等本地文件
 └── README.md               # 本文件
 ```
 
@@ -124,13 +125,24 @@ yudao-document-free/
 
 ```bash
 # 1. 安装测试依赖（需本机已装 Chrome）
-npm install puppeteer-core
+npm install
 
 # 2. 运行三轮测试
-node tests/extension-test.js
+npm test
+# 或等价写法：node tests/extension-test.js
 ```
 
-> ⚠️ `tests/extension-test.js` 第 8 行硬编码 `CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe'`，非 Windows 或非默认路径需手动修改。测试以 `process.exit(pass ? 0 : 1)` 返回退出码，可用于 CI 门禁。
+> ✅ **Chrome 路径自动检测**：测试脚本已支持 macOS/Linux/Windows 三平台自动检测 Chrome/Chromium/Edge 路径。如检测失败或使用非默认路径，可设置 `CHROME` 环境变量：
+> ```bash
+> # macOS/Linux
+> export CHROME="/path/to/your/chrome"
+> npm test
+> 
+> # Windows (cmd)
+> set CHROME=C:\custom\path\chrome.exe && npm test
+> ```
+>
+> 测试以 `process.exit(pass ? 0 : 1)` 返回退出码，可用于 CI 门禁。
 
 ---
 
@@ -151,7 +163,7 @@ const VIP_COOKIE_NAME = '88974ed8-6aff-48ab-a7d1-4af5ffea88bb';
 1. 依赖 cookie 名固定，网站改名需同步更新常量
 2. `world: MAIN` 让脚本运行在页面主上下文以拦截页面 XHR，需 Chrome 111+ / Edge 111+
 3. 仅解锁前端展示，**不提供真实 VIP 权限**（无服务端鉴权）
-4. `tests/extension-test.js` Chrome 路径硬编码，跨平台兼容性待优化
+4. `tests/extension-test.js` Chrome 路径硬编码为 Windows 默认路径，非默认路径/非 Windows 需手动改第 8 行 `CHROME` 常量（详见上文「自动化测试」章节）
 
 ---
 

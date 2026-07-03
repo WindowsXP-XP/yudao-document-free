@@ -5,7 +5,45 @@
 const puppeteer = require('puppeteer-core');
 const fs = require('fs');
 const path = require('path');
-const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+const os = require('os');
+
+// 跨平台 Chrome/Chromium/Edge 路径自动检测
+function findChrome() {
+    const platform = os.platform();
+    const candidates = [];
+
+    if (platform === 'darwin') { // macOS
+        candidates.push(
+            '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+            '/Applications/Chromium.app/Contents/MacOS/Chromium',
+            '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
+            process.env.HOME + '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+        );
+    } else if (platform === 'linux') {
+        candidates.push(
+            '/usr/bin/google-chrome',
+            '/usr/bin/chromium-browser',
+            '/usr/bin/chromium',
+            '/snap/bin/chromium',
+            '/usr/bin/microsoft-edge'
+        );
+    } else { // win32
+        candidates.push(
+            'C:/Program Files/Google/Chrome/Application/chrome.exe',
+            'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
+            'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+            'C:/Program Files/Microsoft Edge/Application/msedge.exe',
+            process.env.LOCALAPPDATA + '/Google/Chrome/Application/chrome.exe'
+        );
+    }
+
+    for (const c of candidates) {
+        if (fs.existsSync(c)) return c;
+    }
+    throw new Error('未找到 Chrome/Chromium/Edge，请手动设置 CHROME 环境变量或修改脚本');
+}
+
+const CHROME = process.env.CHROME || findChrome();
 const CONTENT_JS = fs.readFileSync(path.resolve(__dirname, '../extension/content.js'), 'utf-8');
 
 async function checkBlocked(page) {
@@ -42,6 +80,13 @@ async function checkBlocked(page) {
     let r = await checkBlocked(page);
     console.log('首次 /vo/:', r.isVipMark ? '✗VIP拦截' : '✓正常', '| len=' + r.contentLen, '| cookie=' + r.cookieOk);
     console.log('扩展日志:', logs.filter(l => l.includes('iocoder-unlocker')).join(' | '));
+
+    // 验证 cloud.iocoder.cn 域名支持（修复无限闪屏问题）
+    console.log('\n### 验证 cloud.iocoder.cn/module-new/ (无限闪屏修复) ###');
+    await page.goto('https://cloud.iocoder.cn/module-new/', { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await new Promise(r => setTimeout(r, 6000));
+    r = await checkBlocked(page);
+    console.log('cloud /module-new/:', r.isVipMark ? '✗VIP拦截' : '✓正常', '| len=' + r.contentLen, '| cookie=' + r.cookieOk);
 
     // 采集侧边栏跨页面 VIP 链接
     const sidebarLinks = await page.evaluate(() => {

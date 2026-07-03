@@ -6,13 +6,15 @@
     "permissions": [],
     "host_permissions": [
         "*://doc.iocoder.cn/*",
-        "*://static.iocoder.cn/*"
+        "*://static.iocoder.cn/*",
+        "*://cloud.iocoder.cn/*"
     ],
     "content_scripts": [
         {
             "matches": [
                 "*://doc.iocoder.cn/*",
-                "*://static.iocoder.cn/*"
+                "*://static.iocoder.cn/*",
+                "*://cloud.iocoder.cn/*"
             ],
             "js": [
                 "content.js"
